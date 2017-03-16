@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+<!-- 1、基础信息定义 -->
+    <!-- 模型版本。maven2.0必须是这样写，现在是maven2唯一支持的版本 -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 公司或者组织的唯一标志，并且配置时生成的路径也是由此生成， 如com.seed，maven会将该项目打成的jar包放本地路径：/com/seed/ -->
+    <groupId>com.seed</groupId>
+
+    <!-- 本项目的唯一ID，一个groupId下面可能多个   项目，就是靠artifactId来区分的 -->
+    <artifactId>purebase</artifactId>
+
+    <!-- 本项目目前所处的版本号 -->
+    <version>1.0-SNAPSHOT</version>
+
+    <!-- 打包的机制，如pom,jar, maven-plugin, ejb, war, ear, rar, par，默认为jar -->
+     <packaging>war</packaging>
+
+    <name>the seed of world</name>
+    <url>https://github.com/TheSummerRain/TheSeed</url>
+
+
+<!-- 2、全局参数变量区 -->
+    <!-- 为pom定义一些常量，在pom中的其它地方可以直接引用 使用方式 如下 ：${file.encoding} -->
+    <!-- 好处是：一次编辑，多处使用，今后不用一个一个修改，下面统一用变量的方式自动修改-->
+    <properties>
+        <!-- spring版本号 -->
+        <spring.version>4.3.7.RELEASE</spring.version>
+        <!-- mybatis版本号 -->
+        <mybatis.version>3.4.2</mybatis.version>
+        <!-- log4j日志文件管理包版本 -->
+        <slf4j.version>1.6.6</slf4j.version>
+
+        <log4j.version>1.2.9</log4j.version>
+        <!-- 单元测试 -->
+        <junit.version>4.12</junit.version>
+
+    </properties>
+
+<!-- 3、：定义本项目的依赖关系 -->
+    <dependencies>
+
+       <!-- 可以到这个网站：搜索maven标签： http://mvnrepository.com/ -->
+
+        <!-- 每个dependency都对应一个jar包 举例说明。查看请区域选中：ctrl+shift+/-->
+        <!--   <dependency>
+
+            &lt;!&ndash;一般情况下，maven是通过groupId、artifactId、version这三个元素值（俗称坐标）来检索该构件， 然后引入你的工程。如果别人想引用你现在开发的这个项目（前提是已开发完毕并发布到了远程仓库），&ndash;&gt;
+            &lt;!&ndash;就需要在他的pom文件中新建一个dependency节点，将本项目的groupId、artifactId、version写入， maven就会把你上传的jar包下载到他的本地 &ndash;&gt;
+            <groupId>com.seed</groupId>
+            <artifactId>purebase</artifactId>
+            <version>1.0-SNAPSHOT</version>
+
+            &lt;!&ndash; maven认为，程序对外部的依赖会随着程序的所处阶段和应用场景而变化，所以maven中的依赖关系有作用域(scope)的限制。 &ndash;&gt;
+            &lt;!&ndash;scope包含如下的取值：compile（编译范围）、provided（已提供范围）、runtime（运行时范围）、test（测试范围）、system（系统范围） &ndash;&gt;
+            <scope>compile</scope>
+
+            &lt;!&ndash; 设置指依赖是否可选，默认为false,即子项目默认都继承:为true,则子项目必需显示的引入，与dependencyManagement里定义的依赖类似  &ndash;&gt;
+            <optional>false</optional>
+
+            &lt;!&ndash; 屏蔽依赖关系。 比如项目中使用的libA依赖某个库的1.0版，libB依赖某个库的2.0版，现在想统一使用2.0版，就应该屏蔽掉对1.0版的依赖 &ndash;&gt;
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>-->
+
+        <!-- (1)、单元测试 -->
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+
+        <!-- (2)、日志：slf4j+logback使用  -->
+        <!-- 参考：https://my.oschina.net/ydsakyclguozi/blog/412240 -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+
+        <!-- (3)、数据库 -->
+        <!--  mysql驱动包 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.38</version>
+        </dependency>
+        <!-- c3p0有点老了。阿里的这个数据库连接池更好一些 -->
+        <!-- 可以参考说明： http://blog.csdn.net/xzknet/article/details/49127701-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.29</version>
+        </dependency>
+        <!-- DAO: MyBatis -->
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+        <!-- mybatis跟spring的无缝结合包 -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+
+        <!-- (4)、Servlet web -->
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <!-- servlet 核心 -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>  <!--  如果用tomcat插件启动，这里一定不要少，否则会报错：A child container failed during start -->
+        </dependency>
+        <!-- json java解析的工具，这个jackson目前比较流行 2017.3 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.8.7</version>
+        </dependency>
+
+<!-- 4、Spring -->
+        <!-- (1).Spring核心 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- (2).Spring DAO -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- (3).Spring web -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- (4).Spring AOP -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-oxm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!-- 扩展 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>4.3.7.RELEASE</version>
+        </dependency>
+
+        <!-- (5)Spring test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.3.7.RELEASE</version>
+        </dependency>
+
+<!-- 5、redis客户端:Jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+        <!-- pojo 序列化 -->
+        <dependency>
+            <groupId>com.dyuproject.protostuff</groupId>
+            <artifactId>protostuff-core</artifactId>
+            <version>1.0.12</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dyuproject.protostuff</groupId>
+            <artifactId>protostuff-runtime</artifactId>
+            <version>1.0.12</version>
+        </dependency>
+
+<!-- 6、Map工具类 -->
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.2</version>
+        </dependency>
+
+    </dependencies>
+
+
+    <!-- 插件的方式启动会报错，本地tomcat的没问题，这里还需要解决 -->
+    <build>
+        <plugins>
+            <plugin>
+                <!-- javax.servlet-api 下面有个作用域，一定加上，否则插件启动会报错 -->
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <port>8089</port>
+                    <path>/</path>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <finalName>theSeed</finalName>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+
+
+
+</project>
