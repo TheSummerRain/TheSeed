@@ -1,5 +1,6 @@
 package com.seed.service.bookservice;
 
+import com.seed.entity.book.BookInfo;
 import com.seed.service.seedservice.ISeedBaseService;
 
 /**
@@ -8,5 +9,7 @@ import com.seed.service.seedservice.ISeedBaseService;
  * @Date 2017/3/17 18:24
  */
 public interface IBookInfoService extends ISeedBaseService {
+
+    BookInfo getOneBookInfoById(int bookId);
 
 }

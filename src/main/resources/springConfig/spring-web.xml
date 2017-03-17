@@ -65,14 +65,14 @@
 
 
     <!-- 避免IE在ajax请求时，返回json出现下载 -->
-    <bean id="mappingJacksonHttpMessageConverter"
+  <!--  <bean id="mappingJacksonHttpMessageConverter"
           class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
                 <value>text/html;charset=UTF-8</value>
             </list>
         </property>
-    </bean>
+    </bean>-->
 
 
 </beans>

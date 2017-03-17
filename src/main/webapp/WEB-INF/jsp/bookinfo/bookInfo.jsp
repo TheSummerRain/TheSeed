@@ -13,7 +13,9 @@
 <body>
 
 
-
+${bookInfo.bid}
+<br>
+${bookInfo.title}
 
 
 </body>

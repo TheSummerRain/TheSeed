@@ -1,6 +1,7 @@
-package com.seed.controller.base;
+package com.seed.controller;
 
 import com.seed.service.bookservice.IBookInfoService;
+import com.seed.service.userservice.IUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -13,12 +14,13 @@ import org.springframework.stereotype.Controller;
 public abstract class SeedBaseController {
 
 
-    /*===================== 1、注册公用服务 =========================*/
+    /*===================== 1、注册公用 service服务 =========================*/
 
     @Autowired
     protected IBookInfoService bookInfoService;
 
-
+    @Autowired
+    protected IUserInfoService userInfoService;
 
     /*===================== 2、注册其他服务 =========================*/
 

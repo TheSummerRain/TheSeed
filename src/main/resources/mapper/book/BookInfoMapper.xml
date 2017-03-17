@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.seed.dao.IBookInfoMapper">
+<mapper namespace="com.seed.dao.bookmapper.IBookInfoMapper">
     <resultMap id="BaseResultMap" type="com.seed.entity.book.BookInfo">
         <id column="bid" property="bid" jdbcType="INTEGER"/>
         <result column="title" property="title" jdbcType="VARCHAR"/>
