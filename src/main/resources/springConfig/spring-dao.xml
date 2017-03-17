@@ -24,16 +24,16 @@
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
           init-method="init" destroy-method="close">
         <property name="driverClassName">
-            <value>${driver}</value>
+            <value>${my.driver}</value>
         </property>
         <property name="url">
-            <value>${url}</value>
+            <value>${my.url}</value>
         </property>
         <property name="username">
-            <value>${username}</value>
+            <value>${my.username}</value>
         </property>
         <property name="password">
-            <value>${password}</value>
+            <value>${my.password}</value>
         </property>
         <!-- 连接池最大使用连接数 -->
         <property name="maxActive">
