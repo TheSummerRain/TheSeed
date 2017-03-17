@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - seed@139.129.239.177" uuid="dd0784b6-b9ac-4eaa-815f-558ee5ea63a4">
+    <database-info product="MySQL" version="5.6.23-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.40 ( Revision: 402933ef52cad9aa82624e80acbea46e3a701ce6 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+      <schema id="1" name="seed">
+        <visible>1</visible>
+      </schema>
+      <schema id="2" name="baijiacms"/>
+      <schema id="3" name="information_schema"/>
+      <schema id="4" name="mysql"/>
+      <schema id="5" name="performance_schema"/>
+      <schema id="6" name="purebase"/>
+      <schema id="7" name="tengyu"/>
+      <schema id="8" name="ty"/>
+      <schema id="9" name="wq8"/>
+      <schema id="10" name="yjshop"/>
+      <table id="11" parent="1" name="appointment">
+        <comment>预约图书表</comment>
+      </table>
+      <table id="12" parent="1" name="book">
+        <comment>图书表</comment>
+      </table>
+      <column id="13" parent="11" name="book_id">
+        <comment>图书ID</comment>
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)|0</data-type>
+      </column>
+      <column id="14" parent="11" name="student_id">
+        <comment>学号</comment>
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)|0</data-type>
+      </column>
+      <column id="15" parent="11" name="appoint_time">
+        <comment>预约时间</comment>
+        <mandatory>1</mandatory>
+        <data-type>timestamp|0</data-type>
+        <default-expression>CURRENT_TIMESTAMP</default-expression>
+      </column>
+      <index id="16" parent="11" name="idx_appoint_time">
+        <columns>appoint_time</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="17" parent="11" name="PRIMARY">
+        <columns>book_id
+student_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="18" parent="12" name="book_id">
+        <comment>图书ID</comment>
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="19" parent="12" name="name">
+        <comment>图书名称</comment>
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)|0</data-type>
+      </column>
+      <column id="20" parent="12" name="number">
+        <comment>馆藏数量</comment>
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <key id="21" parent="12" name="PRIMARY">
+        <columns>book_id</columns>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+</component>

@@ -85,7 +85,7 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 注入sqlSessionFactory -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-        <!-- 给出需要扫描Dao接口包 -->
+        <!-- 给出需要扫描Dao接口包,如果需要扫描多个，中间使用半角逗号隔开 -->
         <property name="basePackage" value="com.seed.dao" />
     </bean>
 

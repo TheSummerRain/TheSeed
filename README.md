@@ -7,4 +7,4 @@ my.driver=com.mysql.jdbc.Driver
 my.url=jdbc:mysql://IP地址:3306/数据库名?useUnicode=true&characterEncoding=utf8
 my.username=
 my.password=
-## 这里一定注意
+

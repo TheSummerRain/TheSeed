@@ -1,7 +1,6 @@
 package com.seed.dao;
 
 import com.seed.BaseTest;
-import com.seed.entity.Book;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,7 +18,8 @@ public class BookDaoTest extends BaseTest {
     public void testQueryById() throws Exception{
         long bookid = 1000;
         Book book = bookMapper.selectByPrimaryKey(bookid);
-        System.out.println(book.getName());
+        System.out.println("=============================");
+        System.out.println(book);
     }
 
 
