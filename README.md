@@ -4,6 +4,9 @@
 
 # 配置文件内容，请新建 ，然后复制以下内容，自己修改
 driver=com.mysql.jdbc.Driver
+
 url=jdbc:mysql://IP地址:3306/数据库名?useUnicode=true&characterEncoding=utf8
+
 username=
+
 password=
