@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @Author Jack
  * @Des
@@ -21,12 +23,20 @@ public class BookInfoController extends SeedBaseController {
 
 
     @RequestMapping("/toBookInfoPage")
-    public String toBookInfoPage(Model model){
+    public String toBookInfoPage(Model model, HttpServletRequest request){
         logger.info("=====访问页面：toBookInfoPage======");
 
         BookInfo bf = bookInfoService.getOneBookInfoById(1000);
 
         logger.info(bf.getTitle()+"=================");
+
+        String ctx = request.getContextPath().toString();
+
+        System.out.println(request.getRequestURI());
+
+        logger.info("=====ctx=="+ctx);
+
+        model.addAttribute("ctx",ctx);
         model.addAttribute("bookInfo",bf);
         return "/bookinfo/bookInfo";
     }

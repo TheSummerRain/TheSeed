@@ -250,6 +250,15 @@
     </dependencies>
 
 
+    <!-- 不建议用这种办法，启动 -->
+    <!-- 如果使用本地tomcat启动，可以配置这个，也可以不配置，不配置就会取groupId+版本号组成war包-->
+    <!-- 如果用插件启动，请关闭这里，开启下面的，这样就不用每次都吧war包放入本地tomcat了，方便的很 -->
+    <!--<build>
+        <finalName>theSeed</finalName>
+    </build>-->
+
+
+    <!-- 建议用这种办法启动-->
     <!-- 插件的方式启动会报错，本地tomcat的没问题，这里还需要解决 -->
     <build>
         <plugins>
@@ -259,7 +268,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <port>8089</port>
+                    <port>8080</port>
                     <path>/</path>
                     <uriEncoding>UTF-8</uriEncoding>
                     <finalName>theSeed</finalName>

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 public abstract class SeedBaseController {
 
 
+
     /*===================== 1、注册公用 service服务 =========================*/
 
     @Autowired
