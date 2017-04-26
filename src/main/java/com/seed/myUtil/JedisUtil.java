@@ -69,11 +69,11 @@ public class JedisUtil {
                     JRedisPoolConfig.REDIS_PORT,
             		10000,JRedisPoolConfig.REDIS_PASSWORD);*/
         //redis未设置了密码：（二选一）
-       /* jedisPool = new JedisPool(config, "139.129.239.177",6379);*/
+       /* jedisPool = new JedisPool(config, "XXX.XX.XX.XX",6379);*/
 
-        jedisPool = new JedisPool(config, "139.129.239.177",
+        jedisPool = new JedisPool(config, "IP",
                 6379,
-                10000, "sdl34sdf9v0b94j5d834d3");
+                10000, "密码");
 
     }
 
