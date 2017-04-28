@@ -10,4 +10,7 @@ import com.seed.entity.user.UserInfo;
  */
 public interface IUserInfoService{
     UserInfo getOneUserByUserId(Integer userId);
+
+
+
 }

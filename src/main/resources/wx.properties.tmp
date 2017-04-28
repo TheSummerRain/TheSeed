@@ -1,0 +1,13 @@
+#请把这个文件的.tmp去掉。并填写下面的内容。
+wx_appid=
+wx_appsecret=
+wx_token=
+wx_aeskey=
+#设置是不是使用redisPool
+redis.isPool=true
+#设置redis的url
+redis.url=
+#设置redis端口
+redis.port=6379
+#redis的认证密码
+redis.password=

@@ -21,6 +21,7 @@
           <file>file://$MODULE_DIR$/src/main/resources/springConfig/spring-web.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/springConfig/spring-dao.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/springConfig/spring-service.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/seed/entity/weixin/WxMpConfig.java</file>
         </fileset>
       </configuration>
     </facet>
@@ -36,6 +37,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="jweixin-1.2.0" level="application" />
+    <orderEntry type="library" name="city-picker" level="application" />
+    <orderEntry type="library" name="swiper" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="jquery-weui" level="application" />
     <orderEntry type="library" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.1" level="project" />
@@ -89,10 +95,24 @@
     <orderEntry type="library" name="Maven: com.dyuproject.protostuff:protostuff-runtime:1.0.12" level="project" />
     <orderEntry type="library" name="Maven: com.dyuproject.protostuff:protostuff-collectionschema:1.0.12" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.2" level="project" />
-    <orderEntry type="library" name="jweixin-1.2.0" level="application" />
-    <orderEntry type="library" name="city-picker" level="application" />
-    <orderEntry type="library" name="swiper" level="application" />
-    <orderEntry type="library" name="jquery" level="application" />
-    <orderEntry type="library" name="jquery-weui" level="application" />
+    <orderEntry type="library" name="Maven: com.github.binarywang:weixin-java-mp:2.6.0" level="project" />
+    <orderEntry type="library" name="Maven: com.github.binarywang:weixin-java-common:2.6.0" level="project" />
+    <orderEntry type="library" name="Maven: com.thoughtworks.xstream:xstream:1.4.9" level="project" />
+    <orderEntry type="library" name="Maven: xmlpull:xmlpull:1.1.3.1" level="project" />
+    <orderEntry type="library" name="Maven: xpp3:xpp3_min:1.1.4c" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpmime:4.5" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.7" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.10" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:2.5" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.5" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:guava:19.0" level="project" />
+    <orderEntry type="library" name="Maven: com.github.binarywang:weixin-java-pay:2.6.0" level="project" />
+    <orderEntry type="library" name="Maven: org.jodd:jodd-http:3.7" level="project" />
+    <orderEntry type="library" name="Maven: org.jodd:jodd-upload:3.7" level="project" />
+    <orderEntry type="library" name="Maven: org.jodd:jodd-core:3.7" level="project" />
+    <orderEntry type="library" name="Maven: com.github.binarywang:qrcode-utils:1.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.zxing:core:3.2.1" level="project" />
   </component>
 </module>
