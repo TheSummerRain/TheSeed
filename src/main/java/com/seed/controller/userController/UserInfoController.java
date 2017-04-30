@@ -1,9 +1,8 @@
 package com.seed.controller.userController;
 
 import com.seed.controller.SeedBaseController;
-import com.seed.entity.user.UserInfo;
-import com.seed.service.userservice.IUserInfoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.seed.entity.user.BaseUserInfo;
+import com.seed.entity.user.WXUserInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +20,7 @@ public class UserInfoController extends SeedBaseController{
     @RequestMapping("/getOneUser")
     public String getOneUserInfo(Model model){
 
-        UserInfo uf = userInfoService.getOneUserByUserId(1);
+        WXUserInfo uf = userInfoService.getOneUserByUserId(1);
         model.addAttribute("userInfo",uf);
         return "/userinfo/userCenter";
     }

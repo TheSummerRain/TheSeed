@@ -2,7 +2,7 @@ package com.seed.intercepter;
 
 
 
-import com.seed.entity.user.UserInfo;
+import com.seed.entity.user.WXUserInfo;
 import org.apache.http.client.ClientProtocolException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
 
 public class Authorization implements HandlerInterceptor  {
 
@@ -80,7 +79,7 @@ public class Authorization implements HandlerInterceptor  {
 		}*/
 		
 		//【授权更新】用户基础数据。
-		UserInfo userInfo = newAuth(request,response,request.getSession().getId());
+		WXUserInfo userInfo = newAuth(request,response,request.getSession().getId());
 		/*if(userInfo != null){
 			if (userInfoService.new_upateUserInfo(userInfo) == 1) {
 				request.getSession().setAttribute(Cts.USER_IN_SESSION,userInfoService
@@ -94,7 +93,7 @@ public class Authorization implements HandlerInterceptor  {
 	
 	//新的授权代码：12.12 ;只增不改
 	@SuppressWarnings("unused")
-	private UserInfo newAuth(HttpServletRequest request,HttpServletResponse response,String key)
+	private WXUserInfo newAuth(HttpServletRequest request, HttpServletResponse response, String key)
 			throws ClientProtocolException, IOException {
 		
 		/*String code = request.getParameter("_c_o_d_e_");
@@ -102,7 +101,7 @@ public class Authorization implements HandlerInterceptor  {
 			return null;
 		}
 
-		UserInfo user =null;
+		WXUserInfo user =null;
 		AccessToken token = null;
 		token = TokenProxy.getOuthToken(code,key);
 

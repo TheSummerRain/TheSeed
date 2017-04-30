@@ -61,7 +61,7 @@
                 &lt;!&ndash;不拦截的内容&ndash;&gt;
                 <mvc:exclude-mapping path="/myjs/**"/>
                 &lt;!&ndash;拦截器的java类地址&ndash;&gt;
-                <bean  class="com.seed.某个拦截器类" />
+                <bean  class="com.base.某个拦截器类" />
             </mvc:interceptor>
         </mvc:interceptors>-->
 

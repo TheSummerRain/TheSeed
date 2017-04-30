@@ -34,16 +34,16 @@ public class MenuManager {
         WxMenu wxMenu = new WxMenu();
         List<WxMenuButton> buttons = new ArrayList<WxMenuButton>();
         //1、第一菜单，只有一个主按钮（名字不能超过4个字符，数量1~3个）
-        buttons.add(getNewButton("最新上", "view", "http://www.lzyj666.com/seed/book/toBookInfoPage"));
-        buttons.add(getNewButton("正在测试", "view", "http://www.lzyj666.com/seed/book/toBookInfoPage"));
+        buttons.add(getNewButton("最新上", "view", "http://www.lzyj666.com/base/book/toBookInfoPage"));
+        buttons.add(getNewButton("正在测试", "view", "http://www.lzyj666.com/base/book/toBookInfoPage"));
 
         //2、有二级菜单的情况。
         //2.1、新建一个一级菜单。
-        WxMenuButton baseButton = getNewButton("用户信息", "view", "http://www.lzyj666.com/seed/user/getOneUser");
+        WxMenuButton baseButton = getNewButton("用户信息", "view", "http://www.lzyj666.com/base/user/getOneUser");
         //2.2、新建一个子菜单数组，准备存放菜单。
         List<WxMenuButton> subButtons = new ArrayList();
-        subButtons.add(getNewButton("充值", "view", "http://www.lzyj666.com/seed/user/getOneUser"));
-        subButtons.add(getNewButton("续费", "view", "http://www.lzyj666.com/seed/user/getOneUser"));
+        subButtons.add(getNewButton("充值", "view", "http://www.lzyj666.com/base/user/getOneUser"));
+        subButtons.add(getNewButton("续费", "view", "http://www.lzyj666.com/base/user/getOneUser"));
 
         //2.3、把子菜单列表set到某个主菜单的：subButtons属性。
         baseButton.setSubButtons(subButtons);

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.seed.dao.usermapper.IWXUserInfoMapper">
+    <resultMap id="BaseResultMap" type="com.seed.entity.user.WXUserInfo">
+        <id column="userid" property="userid" jdbcType="INTEGER"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="birth" property="birth" jdbcType="DATE"/>
+
+        <result column="nickname" property="nickName" jdbcType="BLOB"
+                typeHandler="com.seed.myUtil.ConvertBlobTypeHandler"/>
+        <result column="wx_nickname" property="wxNickName" jdbcType="BLOB"
+                typeHandler="com.seed.myUtil.ConvertBlobTypeHandler"/>
+
+        <result column="wx_openid" property="wxOpenid" jdbcType="VARCHAR"/>
+        <result column="wx_headimgurl" property="wxHeadimgurl" jdbcType="VARCHAR"/>
+        <result column="wx_sex" property="wxSex" jdbcType="INTEGER"/>
+        <result column="wx_province" property="wxProvince" jdbcType="VARCHAR"/>
+        <result column="wx_city" property="wxCity" jdbcType="VARCHAR"/>
+        <result column="wx_country" property="wxCountry" jdbcType="VARCHAR"/>
+        <result column="wx_unionid" property="wxUnionid" jdbcType="VARCHAR"/>
+        <result column="createTime" property="createtime" jdbcType="TIMESTAMP"/>
+        <result column="lastTime" property="lasttime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+
+    <sql id="Base_Column_List">
+        userid, mobile, birth, wx_openid, wx_headimgurl, wx_sex, wx_province, wx_city, wx_country,
+        wx_unionid, createTime, lastTime, remark , nickname, wx_nickname
+    </sql>
+
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from seed_user_info
+        where userid = #{userid,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from seed_user_info
+        where userid = #{userid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.seed.entity.user.WXUserInfo">
+        insert into seed_user_info (userid, mobile, birth,
+        wx_openid, wx_headimgurl, wx_sex,
+        wx_province, wx_city, wx_country,
+        wx_unionid, createTime, lastTime,
+        remark, nickname, wx_nickname
+        )
+        values (#{userid,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{birth,jdbcType=DATE},
+        #{wxOpenid,jdbcType=VARCHAR}, #{wxHeadimgurl,jdbcType=VARCHAR}, #{wxSex,jdbcType=INTEGER},
+        #{wxProvince,jdbcType=VARCHAR}, #{wxCity,jdbcType=VARCHAR}, #{wxCountry,jdbcType=VARCHAR},
+        #{wxUnionid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{lasttime,jdbcType=TIMESTAMP},
+        #{remark,jdbcType=VARCHAR}, #{nickName,jdbcType=BLOB}, #{wxNickName,jdbcType=BLOB}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.seed.entity.user.WXUserInfo">
+        insert into seed_user_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                userid,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="birth != null">
+                birth,
+            </if>
+            <if test="wxOpenid != null">
+                wx_openid,
+            </if>
+            <if test="wxHeadimgurl != null">
+                wx_headimgurl,
+            </if>
+            <if test="wxSex != null">
+                wx_sex,
+            </if>
+            <if test="wxProvince != null">
+                wx_province,
+            </if>
+            <if test="wxCity != null">
+                wx_city,
+            </if>
+            <if test="wxCountry != null">
+                wx_country,
+            </if>
+            <if test="wxUnionid != null">
+                wx_unionid,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+            <if test="lasttime != null">
+                lastTime,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="nickName != null">
+                nickname,
+            </if>
+            <if test="wxNickName != null">
+                wx_nickname,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="birth != null">
+                #{birth,jdbcType=DATE},
+            </if>
+            <if test="wxOpenid != null">
+                #{wxOpenid,jdbcType=VARCHAR},
+            </if>
+            <if test="wxHeadimgurl != null">
+                #{wxHeadimgurl,jdbcType=VARCHAR},
+            </if>
+            <if test="wxSex != null">
+                #{wxSex,jdbcType=INTEGER},
+            </if>
+            <if test="wxProvince != null">
+                #{wxProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="wxCity != null">
+                #{wxCity,jdbcType=VARCHAR},
+            </if>
+            <if test="wxCountry != null">
+                #{wxCountry,jdbcType=VARCHAR},
+            </if>
+            <if test="wxUnionid != null">
+                #{wxUnionid,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lasttime != null">
+                #{lasttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                #{nickName,jdbcType=BLOB},
+            </if>
+            <if test="wxNickName != null">
+                #{wxNickName,jdbcType=BLOB},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.seed.entity.user.WXUserInfo">
+        update seed_user_info
+        <set>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="birth != null">
+                birth = #{birth,jdbcType=DATE},
+            </if>
+            <if test="wxOpenid != null">
+                wx_openid = #{wxOpenid,jdbcType=VARCHAR},
+            </if>
+            <if test="wxHeadimgurl != null">
+                wx_headimgurl = #{wxHeadimgurl,jdbcType=VARCHAR},
+            </if>
+            <if test="wxSex != null">
+                wx_sex = #{wxSex,jdbcType=INTEGER},
+            </if>
+            <if test="wxProvince != null">
+                wx_province = #{wxProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="wxCity != null">
+                wx_city = #{wxCity,jdbcType=VARCHAR},
+            </if>
+            <if test="wxCountry != null">
+                wx_country = #{wxCountry,jdbcType=VARCHAR},
+            </if>
+            <if test="wxUnionid != null">
+                wx_unionid = #{wxUnionid,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lasttime != null">
+                lastTime = #{lasttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                nickname = #{nickName,jdbcType=BLOB},
+            </if>
+            <if test="wxNickname != null">
+                wx_nickname = #{wxNickName,jdbcType=BLOB},
+            </if>
+        </set>
+        where userid = #{userid,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.seed.entity.user.WXUserInfo">
+        update seed_user_info
+        set mobile = #{mobile,jdbcType=VARCHAR},
+        birth = #{birth,jdbcType=DATE},
+        wx_openid = #{wxOpenid,jdbcType=VARCHAR},
+        wx_headimgurl = #{wxHeadimgurl,jdbcType=VARCHAR},
+        wx_sex = #{wxSex,jdbcType=INTEGER},
+        wx_province = #{wxProvince,jdbcType=VARCHAR},
+        wx_city = #{wxCity,jdbcType=VARCHAR},
+        wx_country = #{wxCountry,jdbcType=VARCHAR},
+        wx_unionid = #{wxUnionid,jdbcType=VARCHAR},
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+        lastTime = #{lasttime,jdbcType=TIMESTAMP},
+        remark = #{remark,jdbcType=VARCHAR},
+        nickname = #{nickName,jdbcType=BLOB},
+        wx_nickname = #{wxNickName,jdbcType=BLOB}
+        where userid = #{userid,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -151,7 +151,6 @@ public class RedisUtils {
     private static void initRedis() {
 
         //判断是否使用pool 如果不使用则是单例的redis
-        System.out.println("===" + PropertyManager.getProperty("redis.url"));
         String proisPool = PropertyManager.getProperty("redis.isPool");
         String proUrl = PropertyManager.getProperty("redis.url");
         String proProt = PropertyManager.getProperty("redis.port");

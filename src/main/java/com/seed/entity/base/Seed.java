@@ -1,4 +1,4 @@
-package com.seed.entity;
+package com.seed.entity.base;
 
 /**
  * @Author Jack

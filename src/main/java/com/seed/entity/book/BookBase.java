@@ -1,6 +1,6 @@
 package com.seed.entity.book;
 
-import com.seed.entity.Seed;
+import com.seed.entity.base.Seed;
 
 /**
  * @Author Jack

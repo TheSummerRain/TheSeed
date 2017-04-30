@@ -1,7 +1,7 @@
 package com.seed.service.userservice;
 
 
-import com.seed.entity.user.UserInfo;
+import com.seed.entity.user.WXUserInfo;
 
 /**
  * @Author Jack
@@ -9,8 +9,6 @@ import com.seed.entity.user.UserInfo;
  * @Date 2017/3/17 22:02
  */
 public interface IUserInfoService{
-    UserInfo getOneUserByUserId(Integer userId);
-
-
+    WXUserInfo getOneUserByUserId(Integer userId);
 
 }

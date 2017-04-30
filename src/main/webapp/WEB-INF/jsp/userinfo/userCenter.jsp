@@ -10,10 +10,11 @@
 </head>
 <body>
 
-年龄：${userInfo.age}
+年龄：${userInfo.birth}
 手机号：${userInfo.mobile}
 
-昵称：${userInfo.nickname}
+昵称：${userInfo.nickName}
+ID:${userInfo.userid}
 
 </body>
 </html>

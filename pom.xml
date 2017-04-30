@@ -7,7 +7,7 @@
     <!-- 模型版本。maven2.0必须是这样写，现在是maven2唯一支持的版本 -->
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- 公司或者组织的唯一标志，并且配置时生成的路径也是由此生成， 如com.seed，maven会将该项目打成的jar包放本地路径：/com/seed/ -->
+    <!-- 公司或者组织的唯一标志，并且配置时生成的路径也是由此生成， 如com.base，maven会将该项目打成的jar包放本地路径：/com/base/ -->
     <groupId>com.seed</groupId>
 
     <!-- 本项目的唯一ID，一个groupId下面可能多个   项目，就是靠artifactId来区分的 -->
@@ -50,7 +50,7 @@
 
             &lt;!&ndash;一般情况下，maven是通过groupId、artifactId、version这三个元素值（俗称坐标）来检索该构件， 然后引入你的工程。如果别人想引用你现在开发的这个项目（前提是已开发完毕并发布到了远程仓库），&ndash;&gt;
             &lt;!&ndash;就需要在他的pom文件中新建一个dependency节点，将本项目的groupId、artifactId、version写入， maven就会把你上传的jar包下载到他的本地 &ndash;&gt;
-            <groupId>com.seed</groupId>
+            <groupId>com.base</groupId>
             <artifactId>purebase</artifactId>
             <version>1.0-SNAPSHOT</version>
 
@@ -270,7 +270,7 @@
     <!-- 如果使用本地tomcat启动，可以配置这个，也可以不配置，不配置就会取artifactId+版本号组成war包-->
     <!-- 如果用插件启动，请关闭这里，开启下面的，这样就不用每次都吧war包放入本地tomcat了，方便的很 -->
   <!--  <build>
-        <finalName>seed</finalName>
+        <finalName>base</finalName>
     </build>-->
 
 

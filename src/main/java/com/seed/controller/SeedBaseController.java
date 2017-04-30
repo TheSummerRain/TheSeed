@@ -49,10 +49,6 @@ public abstract class SeedBaseController {
         config.setAesKey(PropertyManager.getProperty("wx_aeskey")); // 设置微信公众号的EncodingAESKey
         wxMpService.setWxMpConfigStorage(config);
 
-
-        //授权
-       /* String auth = wxMpService.oauth2buildAuthorizationUrl("http://www.lzyj666.com/seed/book/toBookInfoPage",WxConsts.OAUTH2_SCOPE_USER_INFO, null);
-        System.out.println("===授权返回=="+auth);*/
     }
 
 
