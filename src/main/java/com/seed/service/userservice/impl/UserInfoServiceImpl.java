@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @Des
  * @Date 2017/3/17 22:07
  */
-@Service
+@Service("userInfoService")
 public class UserInfoServiceImpl implements IUserInfoService {
 
 

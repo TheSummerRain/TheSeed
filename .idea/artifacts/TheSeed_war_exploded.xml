@@ -60,6 +60,7 @@
           <element id="library" level="project" name="Maven: org.jodd:jodd-core:3.7" />
           <element id="library" level="project" name="Maven: com.github.binarywang:qrcode-utils:1.0" />
           <element id="library" level="project" name="Maven: com.google.zxing:core:3.2.1" />
+          <element id="library" level="project" name="Maven: joda-time:joda-time:2.9.9" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -1,6 +1,7 @@
 package com.seed.entity.user;
 
 import com.seed.entity.base.Seed;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -16,15 +17,20 @@ public class BaseUserInfo extends Seed {
     private String nickName;
     //用户手机号
     private String mobile;
-    //出生年月
+
+    //出生年月[为啥不起作用？][joda-time.jar也引用了]
+   @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth;
+
     //创建时间
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createtime;
     //最后一次登陆时间
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date lasttime;
     //备注。
     private String remark;
-
 
     public String getNickName() {
         return nickName;
