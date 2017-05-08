@@ -17,4 +17,13 @@ public class ImportDict {
     //公共失效时间，单位：秒
     public static int pubOutOfServiceTime = 60;
 
+    //URL地址信息
+    public static String BaseUri = "http://www.lzyj666.com/seed/";
+
+
+
+    //授权_跳转地址1
+    public static String userRedirectURI=BaseUri+"user/getOneUser";
+
+
 }

@@ -32,9 +32,6 @@ public class WxController extends SeedBaseController {
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
 
-        System.out.println(request.toString());
-
-
         // 微信加密签名
         String signature = request.getParameter("signature");
         // 时间戳
@@ -43,13 +40,12 @@ public class WxController extends SeedBaseController {
         String nonce = request.getParameter("nonce");
 
         PrintWriter out = response.getWriter();
-
         //装载微信基础配置。
-        loadWeixinConfig();
+       /* loadWeixinConfig();*/
         //开发者通过检验signature对请求进行校验。若确认此次GET请求来自微信服务器，请原样返回echostr参数内容，则接入生效，成为开发者成功，否则接入失败。
         if (!wxMpService.checkSignature(timestamp, nonce, signature)) {
             // 消息签名不正确，说明不是公众平台发过来的消息
-            out.println("非法请求");
+            out.println("WxController ...... 非法请求 .....");
             return;
         }
 
@@ -57,16 +53,14 @@ public class WxController extends SeedBaseController {
         String echostr = request.getParameter("echostr");
         if (StringUtils.isNotBlank(echostr)) {
             // 说明是一个仅仅用来验证的请求，回显echostr
+            System.out.println("WxController .... echostr = "+echostr);
             response.getWriter().println(echostr);
             return;
         }
 
-        String encryptType = StringUtils.isBlank(request.getParameter("encrypt_type")) ?
-                "raw" :
-                request.getParameter("encrypt_type");
-        System.out.println("encryptType:"+encryptType);
-
     }
+
+
 
 
 

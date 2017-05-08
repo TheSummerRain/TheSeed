@@ -11,17 +11,21 @@
 </head>
 <body>
 
-生日：${userInfo.birth}
+生日：${userInfo.birth}<br>
+openid:${userInfo.wxOpenid}<br>
+微信昵称：${userInfo.wxNickName}<br>
+头像：<img src="${userInfo.wxHeadimgurl}">
+
 
 <%--
 <!-- 日期使用例子 -->
 <fmt:formatDate value="${userInfo.birth}" pattern="yyyy-MM-dd"/>
 --%>
 
-手机号：${userInfo.mobile}
+手机号：${userInfo.mobile}<br>
 
-昵称：${userInfo.nickName}
-ID:${userInfo.userid}
+昵称：${userInfo.nickName}<br>
+ID:${userInfo.userid}<br>
 
 </body>
 </html>

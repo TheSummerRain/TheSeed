@@ -279,8 +279,8 @@
     <!-- 不建议用这种办法，启动 -->
     <!-- 如果使用本地tomcat启动，可以配置这个，也可以不配置，不配置就会取artifactId+版本号组成war包-->
     <!-- 如果用插件启动，请关闭这里，开启下面的，这样就不用每次都吧war包放入本地tomcat了，方便的很 -->
-  <!--  <build>
-        <finalName>base</finalName>
+ <!--   <build>
+        <finalName>seed</finalName>
     </build>-->
 
 

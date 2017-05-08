@@ -57,7 +57,7 @@
         #{remark,jdbcType=VARCHAR}, #{nickName,jdbcType=BLOB}, #{wxNickName,jdbcType=BLOB}
         )
     </insert>
-    <insert id="insertSelective" parameterType="com.seed.entity.user.WXUserInfo">
+    <insert id="insertSelective" parameterType="com.seed.entity.user.WXUserInfo" useGeneratedKeys="true" keyProperty="userid">
         insert into seed_user_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="userid != null">
@@ -196,7 +196,7 @@
             <if test="nickName != null">
                 nickname = #{nickName,jdbcType=BLOB},
             </if>
-            <if test="wxNickname != null">
+            <if test="wxNickName != null">
                 wx_nickname = #{wxNickName,jdbcType=BLOB},
             </if>
         </set>

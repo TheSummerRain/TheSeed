@@ -8,7 +8,14 @@ import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @Author Jack
@@ -19,8 +26,19 @@ import org.springframework.stereotype.Controller;
 public abstract class SeedBaseController {
 
     /*======================0、参数区域==============================================*/
-    protected WxMpInMemoryConfigStorage config;
-    protected WxMpService wxMpService = new WxMpServiceImpl();
+    protected static  WxMpService wxMpService ;
+
+    static {
+        WxMpInMemoryConfigStorage config  = new WxMpInMemoryConfigStorage();
+        config.setAppId(PropertyManager.getProperty("wx_appid")); // 设置微信公众号的appid
+        config.setSecret(PropertyManager.getProperty("wx_appsecret")); // 设置微信公众号的app corpSecret
+        config.setToken(PropertyManager.getProperty("wx_token")); // 设置微信公众号的token
+        config.setAesKey(PropertyManager.getProperty("wx_aeskey")); // 设置微信公众号的EncodingAESKey
+        wxMpService = new WxMpServiceImpl();
+        wxMpService.setWxMpConfigStorage(config);
+    }
+
+
 
     /*===================== 1、注册公用 service服务 =========================*/
 
@@ -41,19 +59,33 @@ public abstract class SeedBaseController {
      * @date 15:18
      */
     protected void loadWeixinConfig(){
-
-        config = new WxMpInMemoryConfigStorage();
+   /*   WxMpInMemoryConfigStorage config  = new WxMpInMemoryConfigStorage();
         config.setAppId(PropertyManager.getProperty("wx_appid")); // 设置微信公众号的appid
         config.setSecret(PropertyManager.getProperty("wx_appsecret")); // 设置微信公众号的app corpSecret
         config.setToken(PropertyManager.getProperty("wx_token")); // 设置微信公众号的token
         config.setAesKey(PropertyManager.getProperty("wx_aeskey")); // 设置微信公众号的EncodingAESKey
-        wxMpService.setWxMpConfigStorage(config);
-
+        wxMpService.setWxMpConfigStorage(config);*/
     }
 
 
+    /**
+     * @description 获取授权的
+     * @author Jack
+     * @return code
+     * @date 2017/5/7 20:11
+     */
+    protected  final String getCode(HttpServletRequest request){
+        return request.getParameter("code");
+    }
 
 
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        System.out.println("......init Binder......");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));   //true:允许输入空值，false:不能为空值
+    }
 
 
 

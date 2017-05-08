@@ -1,6 +1,8 @@
 package com.seed.controller.wxController;
 
 import com.seed.myUtil.PropertyManager;
+import com.seed.mydict.ImportDict;
+import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.bean.menu.WxMenu;
 import me.chanjar.weixin.common.bean.menu.WxMenuButton;
 import me.chanjar.weixin.common.exception.WxErrorException;
@@ -18,6 +20,25 @@ import java.util.List;
  */
 public class MenuManager {
 
+
+    public static void main_test(String[] args) {
+
+        //获取配置信息。
+        WxMpService wxMpService = new WxMpServiceImpl();
+        WxMpInMemoryConfigStorage config = new WxMpInMemoryConfigStorage();
+        config.setAppId(PropertyManager.getProperty("wx_appid")); // 设置微信公众号的appid
+        config.setSecret(PropertyManager.getProperty("wx_appsecret")); // 设置微信公众号的app corpSecret
+        config.setToken(PropertyManager.getProperty("wx_token")); // 设置微信公众号的token
+        config.setAesKey(PropertyManager.getProperty("wx_aeskey")); // 设置微信公众号的EncodingAESKey
+        wxMpService.setWxMpConfigStorage(config);
+
+        String Oauth = wxMpService.oauth2buildAuthorizationUrl(ImportDict.userRedirectURI, WxConsts.OAUTH2_SCOPE_USER_INFO, null);
+        System.out.println("授权地址："+Oauth);
+
+    }
+
+
+
     //官方文档地址：https://mp.weixin.qq.com/wiki
     public static void main(String[] args) {
 
@@ -34,16 +55,20 @@ public class MenuManager {
         WxMenu wxMenu = new WxMenu();
         List<WxMenuButton> buttons = new ArrayList<WxMenuButton>();
         //1、第一菜单，只有一个主按钮（名字不能超过4个字符，数量1~3个）
-        buttons.add(getNewButton("最新上", "view", "http://www.lzyj666.com/base/book/toBookInfoPage"));
-        buttons.add(getNewButton("正在测试", "view", "http://www.lzyj666.com/base/book/toBookInfoPage"));
+
+        String userRedirectURI = wxMpService.oauth2buildAuthorizationUrl(ImportDict.userRedirectURI, WxConsts.OAUTH2_SCOPE_USER_INFO, null);
+        System.out.println("userRedirectURI授权地址："+userRedirectURI);
+
+        buttons.add(getNewButton("个人中心", "view", userRedirectURI));
 
         //2、有二级菜单的情况。
         //2.1、新建一个一级菜单。
-        WxMenuButton baseButton = getNewButton("用户信息", "view", "http://www.lzyj666.com/base/user/getOneUser");
+        WxMenuButton baseButton = getNewButton("用户信息", "view", "http://www.lzyj666.com/seed/user/getOneUser");
         //2.2、新建一个子菜单数组，准备存放菜单。
         List<WxMenuButton> subButtons = new ArrayList();
-        subButtons.add(getNewButton("充值", "view", "http://www.lzyj666.com/base/user/getOneUser"));
-        subButtons.add(getNewButton("续费", "view", "http://www.lzyj666.com/base/user/getOneUser"));
+        String userdir = wxMpService.oauth2buildAuthorizationUrl(ImportDict.userRedirectURI, WxConsts.OAUTH2_SCOPE_BASE, null);
+        subButtons.add(getNewButton("充值", "view", userdir));
+        subButtons.add(getNewButton("续费", "view", "http://www.lzyj666.com/seed/user/getOneUser"));
 
         //2.3、把子菜单列表set到某个主菜单的：subButtons属性。
         baseButton.setSubButtons(subButtons);
