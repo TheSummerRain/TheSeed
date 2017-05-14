@@ -30,7 +30,7 @@
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
 
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="description" content="">
@@ -42,4 +42,11 @@
 <%--引入其他文件--%>
 <script type="text/javascript" src="<%=bp%>/js/jquery3/jquery-3.2.0.min.js"></script>
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+
+<!-- 引入模板文件 -->
+<link href="<%=bp%>/css/nav/jquery-accordion-menu.css" rel="stylesheet" type="text/css" />
+<link href="<%=bp%>/css/weui.min.css" rel="stylesheet" type="text/css" />
+<script src="<%=bp%>/css/js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="<%=bp%>/css/js/jquery.scrollUp.min.js"></script>
+<script src="<%=bp%>/css/js/jquery.easytabs.js" type="text/javascript"></script>
 

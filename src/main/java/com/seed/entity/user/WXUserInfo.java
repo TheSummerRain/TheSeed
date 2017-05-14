@@ -2,7 +2,6 @@ package com.seed.entity.user;
 
 
 import com.seed.myUtil.DateUtils;
-import javafx.scene.input.DataFormat;
 
 public class WXUserInfo extends BaseUserInfo {
 

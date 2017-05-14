@@ -26,13 +26,14 @@ public class HomeController extends SeedBaseController {
      * @author Jack
      * @date 23:07
      */
+    @RequestMapping("/shouye")
     public String goHomePage(HttpServletRequest request, Model model) {
 
         //1、获取轮播banner数据。
         //2、获取最新的分类信息数据。（如果后期稳定，可以写死）
         //3、数据传递到页面。页面跳转，并加载数据。
 
-        return "到商城的分类首页";
+        return "home/index";
     }
 
     /**

@@ -49,26 +49,31 @@ public class Authorization implements HandlerInterceptor {
         String checkSource = request.getHeader("user-agent").toLowerCase();
         System.out.println("请求中的头信息，检测是否含有微信发起的请求的标示 : " + checkSource);
 
-        if (!checkSource.toLowerCase().contains("micromessenger")) {
+        //本地测试，关闭这里。
+        /*if (!checkSource.toLowerCase().contains("micromessenger")) {
             //头信息里不存在：micromessenger，说明不是微信发起的请求。中断请求。{注意：微信配置验证，这里不会成功，比较特殊}
             response.getWriter().println("客户端异常请求，记录次数 +1 ");
             return false;
-        }
+        }*/
 
         System.out.println("=============================");
         //查找session是否有值。
-     /*   WXUserInfo userSession = (WXUserInfo) request.getSession().getAttribute(ImportDict.USER_IN_SESSION);
+        WXUserInfo userSession = (WXUserInfo) request.getSession().getAttribute(ImportDict.USER_IN_SESSION);
         if (userSession != null) {
             //如果在涉及用户信息变更的地方，update了session，这里就不需要重新获取用户数据，更新session .
             System.out.println("userSession 不为空.....");
             return true;
-        }*/
+        }
         //session为空,授权获取数据,从新更新session。
         ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(request.getSession().getServletContext());
         IUserInfoService userInfoService = (UserInfoServiceImpl) context
                 .getBean("userService");
 
-        WXUserInfo wxUserInfo = Auth(request, response);
+
+        request.getSession().setAttribute(ImportDict.USER_IN_SESSION, userInfoService.getOneUserByUserId(6));
+        return true;
+
+     /*   WXUserInfo wxUserInfo = Auth(request, response);
         if (wxUserInfo != null) {
             //判断是否已经存在。存在则更新session.
             int chek = userInfoService.checkHasByOpenId(wxUserInfo.getWxOpenid());
@@ -88,7 +93,7 @@ public class Authorization implements HandlerInterceptor {
             response.getWriter().println("授权失败~");
             return false;
         }
-
+*/
 
     }
 
