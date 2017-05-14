@@ -1,6 +1,7 @@
 package com.seed.controller;
 
 import com.seed.myUtil.PropertyManager;
+import com.seed.myUtil.myWxMpServiceUtils;
 import com.seed.service.bookservice.IBookInfoService;
 import com.seed.service.userservice.IUserInfoService;
 import me.chanjar.weixin.common.api.WxConsts;
@@ -26,19 +27,7 @@ import java.util.Date;
 public abstract class SeedBaseController {
 
     /*======================0、参数区域==============================================*/
-    protected static  WxMpService wxMpService ;
-
-    static {
-        WxMpInMemoryConfigStorage config  = new WxMpInMemoryConfigStorage();
-        config.setAppId(PropertyManager.getProperty("wx_appid")); // 设置微信公众号的appid
-        config.setSecret(PropertyManager.getProperty("wx_appsecret")); // 设置微信公众号的app corpSecret
-        config.setToken(PropertyManager.getProperty("wx_token")); // 设置微信公众号的token
-        config.setAesKey(PropertyManager.getProperty("wx_aeskey")); // 设置微信公众号的EncodingAESKey
-        wxMpService = new WxMpServiceImpl();
-        wxMpService.setWxMpConfigStorage(config);
-    }
-
-
+    protected  WxMpService wxMpService = myWxMpServiceUtils.wxMpServiceUtil;
 
     /*===================== 1、注册公用 service服务 =========================*/
 

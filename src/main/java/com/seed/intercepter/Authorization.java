@@ -14,7 +14,6 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
@@ -58,12 +57,12 @@ public class Authorization implements HandlerInterceptor {
 
         System.out.println("=============================");
         //查找session是否有值。
-        WXUserInfo userSession = (WXUserInfo) request.getSession().getAttribute(ImportDict.USER_IN_SESSION);
+     /*   WXUserInfo userSession = (WXUserInfo) request.getSession().getAttribute(ImportDict.USER_IN_SESSION);
         if (userSession != null) {
             //如果在涉及用户信息变更的地方，update了session，这里就不需要重新获取用户数据，更新session .
             System.out.println("userSession 不为空.....");
             return true;
-        }
+        }*/
         //session为空,授权获取数据,从新更新session。
         ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(request.getSession().getServletContext());
         IUserInfoService userInfoService = (UserInfoServiceImpl) context
@@ -125,6 +124,9 @@ public class Authorization implements HandlerInterceptor {
         wu.setWxCity(wxMpUser.getCity());
         wu.setWxProvince(wxMpUser.getProvince());
         wu.setWxCountry(wxMpUser.getCountry());
+
+        System.out.println("测试日期："+wu.getCreatetime());
+
         return wu;
     }
 

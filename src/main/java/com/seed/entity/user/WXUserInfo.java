@@ -1,6 +1,9 @@
 package com.seed.entity.user;
 
 
+import com.seed.myUtil.DateUtils;
+import javafx.scene.input.DataFormat;
+
 public class WXUserInfo extends BaseUserInfo {
 
     //微信方用户基础信息
@@ -87,6 +90,30 @@ public class WXUserInfo extends BaseUserInfo {
     public void setWxUnionid(String wxUnionid) {
         this.wxUnionid = wxUnionid == null ? null : wxUnionid.trim();
     }
+
+    //重写
+    public String toString(){
+        StringBuffer sb = new StringBuffer();
+        sb.append("对象："+this.getClass().getName()).append("\n");
+        sb.append("{ userId = ").append(getUserid()).append("\n");
+        sb.append("nickname = ").append(getNickName()).append("\n");
+        sb.append("mobile = ").append(getMobile()).append("\n");
+        sb.append("birth = ").append(DateUtils.getStringDate(getBirth())).append("\n");
+        sb.append("createtime = ").append(DateUtils.getStringDate(getCreatetime())).append("\n");
+        sb.append("lasttime = ").append(DateUtils.getStringDate(getLasttime())).append("\n");
+        sb.append("remark = ").append(getRemark()).append("\n");
+
+        sb.append("wxOpenid = ").append(getWxOpenid()).append("\n");
+        sb.append("wxNickName = ").append(getWxNickName()).append("\n");
+        sb.append("wxHeadimgurl = ").append(getWxHeadimgurl()).append("\n");
+        sb.append("wxSex = ").append(getWxSex()).append("\n");
+        sb.append("wxProvince = ").append(getWxProvince()).append("\n");
+        sb.append("wxCity = ").append(getWxCity()).append("\n");
+        sb.append("wxCountry = ").append(getWxCountry()).append("\n");
+        sb.append("wxUnionid = ").append(getWxUnionid()+" }").append("\n");
+        return sb.toString();
+    }
+
 
 
 }

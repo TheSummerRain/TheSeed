@@ -19,15 +19,15 @@ public class BaseUserInfo extends Seed {
     private String mobile;
 
     //出生年月[为啥不起作用？][joda-time.jar也引用了]
-   @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+/*   @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")*/
     private Date birth;
 
     //创建时间
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+/*    @DateTimeFormat(pattern = "yyyy-MM-dd")*/
     private Date createtime;
     //最后一次登陆时间
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+   /* @DateTimeFormat(pattern = "yyyy-MM-dd")*/
     private Date lasttime;
     //备注。
     private String remark;

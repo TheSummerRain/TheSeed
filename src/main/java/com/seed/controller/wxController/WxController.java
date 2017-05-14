@@ -40,8 +40,6 @@ public class WxController extends SeedBaseController {
         String nonce = request.getParameter("nonce");
 
         PrintWriter out = response.getWriter();
-        //装载微信基础配置。
-       /* loadWeixinConfig();*/
         //开发者通过检验signature对请求进行校验。若确认此次GET请求来自微信服务器，请原样返回echostr参数内容，则接入生效，成为开发者成功，否则接入失败。
         if (!wxMpService.checkSignature(timestamp, nonce, signature)) {
             // 消息签名不正确，说明不是公众平台发过来的消息
