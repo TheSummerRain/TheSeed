@@ -32,8 +32,8 @@ public class MenuManager {
         config.setAesKey(PropertyManager.getProperty("wx_aeskey")); // 设置微信公众号的EncodingAESKey
         wxMpService.setWxMpConfigStorage(config);
 
-        String Oauth = wxMpService.oauth2buildAuthorizationUrl(ImportDict.userRedirectURI, WxConsts.OAUTH2_SCOPE_USER_INFO, null);
-        System.out.println("授权地址："+Oauth);
+     /*   String Oauth = wxMpService.oauth2buildAuthorizationUrl(ImportDict.userRedirectURI, WxConsts.OAUTH2_SCOPE_USER_INFO, null);
+        System.out.println("授权地址："+Oauth);*/
 
     }
 
@@ -58,17 +58,18 @@ public class MenuManager {
 
         String userRedirectURI = wxMpService.oauth2buildAuthorizationUrl(ImportDict.userRedirectURI, WxConsts.OAUTH2_SCOPE_USER_INFO, null);
         System.out.println("userRedirectURI授权地址："+userRedirectURI);
-
         buttons.add(getNewButton("个人中心", "view", userRedirectURI));
+
+        String homeUrl = wxMpService.oauth2buildAuthorizationUrl(ImportDict.homeRedirectURI, WxConsts.OAUTH2_SCOPE_USER_INFO, null);
+        buttons.add(getNewButton("商城首页", "view", homeUrl));
 
         //2、有二级菜单的情况。
         //2.1、新建一个一级菜单。
         WxMenuButton baseButton = getNewButton("用户信息", "view", "http://www.lzyj666.com/seed/user/getOneUser");
         //2.2、新建一个子菜单数组，准备存放菜单。
         List<WxMenuButton> subButtons = new ArrayList();
-        String userdir = wxMpService.oauth2buildAuthorizationUrl(ImportDict.userRedirectURI, WxConsts.OAUTH2_SCOPE_BASE, null);
-        subButtons.add(getNewButton("充值", "view", userdir));
-        subButtons.add(getNewButton("续费", "view", "http://www.lzyj666.com/seed/user/getOneUser"));
+        subButtons.add(getNewButton("充值", "view", userRedirectURI));
+        subButtons.add(getNewButton("续费", "view", userRedirectURI));
 
         //2.3、把子菜单列表set到某个主菜单的：subButtons属性。
         baseButton.setSubButtons(subButtons);

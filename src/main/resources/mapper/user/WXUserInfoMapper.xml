@@ -24,7 +24,6 @@
     </resultMap>
 
 
-
     <sql id="Base_Column_List">
         userid, mobile, birth, wx_openid, wx_headimgurl, wx_sex, wx_province, wx_city, wx_country,
         wx_unionid, createTime, lastTime, remark , nickname, wx_nickname
@@ -34,17 +33,17 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
-        from seed_user_info
+        from seed_user
         where userid = #{userid,jdbcType=INTEGER}
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        delete from seed_user_info
+        delete from seed_user
         where userid = #{userid,jdbcType=INTEGER}
     </delete>
 
     <insert id="insert" parameterType="com.seed.entity.user.WXUserInfo">
-        insert into seed_user_info (userid, mobile, birth,
+        insert into seed_user (userid, mobile, birth,
         wx_openid, wx_headimgurl, wx_sex,
         wx_province, wx_city, wx_country,
         wx_unionid, createTime, lastTime,
@@ -58,7 +57,7 @@
         )
     </insert>
     <insert id="insertSelective" parameterType="com.seed.entity.user.WXUserInfo" useGeneratedKeys="true" keyProperty="userid">
-        insert into seed_user_info
+        insert into seed_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="userid != null">
                 userid,
@@ -155,7 +154,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.seed.entity.user.WXUserInfo">
-        update seed_user_info
+        update seed_user
         <set>
             <if test="mobile != null">
                 mobile = #{mobile,jdbcType=VARCHAR},
@@ -204,7 +203,7 @@
     </update>
 
     <update id="updateByPrimaryKey" parameterType="com.seed.entity.user.WXUserInfo">
-        update seed_user_info
+        update seed_user
         set mobile = #{mobile,jdbcType=VARCHAR},
         birth = #{birth,jdbcType=DATE},
         wx_openid = #{wxOpenid,jdbcType=VARCHAR},

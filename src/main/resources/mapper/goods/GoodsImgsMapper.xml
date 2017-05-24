@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.seed.dao.goodsmapper.IGoodsImgsMapper" >
+
+  <resultMap id="BaseResultMap" type="com.seed.entity.goods.GoodsImgs" >
+    <id column="picid" property="picid" jdbcType="INTEGER" />
+    <result column="gdid" property="gdid" jdbcType="INTEGER" />
+    <result column="imgUrl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="imgname" property="imgname" jdbcType="VARCHAR" />
+    <result column="odnum" property="odnum" jdbcType="INTEGER" />
+
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    picid, gdid, imgUrl, imgname,odnum
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from seed_goods_imgs
+    where picid = #{picid,jdbcType=INTEGER}
+  </select>
+
+
+</mapper>

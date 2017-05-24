@@ -1,5 +1,9 @@
 package com.seed.mydict;
 
+import org.apache.commons.collections.map.HashedMap;
+
+import java.util.Map;
+
 /**
  * 重要的字典信息对象
  * 2017/5/1 22:18
@@ -22,8 +26,21 @@ public class ImportDict {
 
 
 
-    //授权_跳转地址1
+    //菜单-授权_跳转：用户个人中心。
     public static String userRedirectURI=BaseUri+"user/getOneUser";
+    public static String homeRedirectURI=BaseUri+"home/shouye";
+
+
+
+
+    //数据字典
+    public static HashedMap topType =  new HashedMap(){
+        {
+            put(1,"车载电器");
+            put(2,"汽车装饰");
+            put(3,"美容清洗");
+        }
+    };
 
 
 }

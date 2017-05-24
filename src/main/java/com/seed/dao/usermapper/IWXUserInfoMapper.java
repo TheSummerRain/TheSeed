@@ -24,7 +24,7 @@ public interface IWXUserInfoMapper {
      * @author Jack
      * @date 2017/5/7 22:32
      */
-    @Select(" select * from seed_user_info where wx_openid=#{openId} limit 1")
+    @Select(" select * from seed_user where wx_openid=#{openId} limit 1")
     @ResultMap("BaseResultMap")
     WXUserInfo selectByOpenID(@Param("openId")String OpenId);
 
@@ -33,7 +33,7 @@ public interface IWXUserInfoMapper {
      * @author Jack
      * @date 2017/5/7 22:32
      */
-    @Select("select count(1) from seed_user_info where wx_openid=#{openId}")
+    @Select("select count(1) from seed_user where wx_openid=#{openId}")
     int checkByOpenId(@Param("openId")String OpenId);
 
 

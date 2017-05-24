@@ -23,6 +23,12 @@
 <br>
 <a href="<%=bp%>/user/getOneUser"> 跳转到书籍页面 </a>
 
+<br>
+<br>
+<br>
+<a href="<%=bp%>/home/shouye"> 首页 </a>
+
+
 
 </body>
 

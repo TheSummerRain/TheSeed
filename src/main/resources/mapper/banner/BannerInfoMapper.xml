@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.seed.dao.bannermapper.IBannerInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.seed.entity.banner.BannerInfo" >
+    <id column="bid" property="bid" jdbcType="INTEGER" />
+    <result column="bimgUrl" property="bimgurl" jdbcType="VARCHAR" />
+    <result column="linkid" property="linkid" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="isAlive" property="isalive" jdbcType="BIT" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bid, bimgUrl, linkid, sort, isAlive, createtime, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from seed_banner
+    where bid = #{bid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seed_banner
+    where bid = #{bid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.seed.entity.banner.BannerInfo" >
+    insert into seed_banner (bid, bimgUrl, linkid,
+    sort, isAlive, createtime,
+    remark)
+    values (#{bid,jdbcType=INTEGER}, #{bimgurl,jdbcType=VARCHAR}, #{linkid,jdbcType=INTEGER},
+    #{sort,jdbcType=INTEGER}, #{isalive,jdbcType=BIT}, #{createtime,jdbcType=TIMESTAMP},
+    #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.seed.entity.banner.BannerInfo" >
+    insert into seed_banner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bid != null" >
+        bid,
+      </if>
+      <if test="bimgurl != null" >
+        bimgUrl,
+      </if>
+      <if test="linkid != null" >
+        linkid,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="isalive != null" >
+        isAlive,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bid != null" >
+        #{bid,jdbcType=INTEGER},
+      </if>
+      <if test="bimgurl != null" >
+        #{bimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="linkid != null" >
+        #{linkid,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="isalive != null" >
+        #{isalive,jdbcType=BIT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.seed.entity.banner.BannerInfo" >
+    update seed_banner
+    <set >
+      <if test="bimgurl != null" >
+        bimgUrl = #{bimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="linkid != null" >
+        linkid = #{linkid,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="isalive != null" >
+        isAlive = #{isalive,jdbcType=BIT},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bid = #{bid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.seed.entity.banner.BannerInfo" >
+    update seed_banner
+    set bimgUrl = #{bimgurl,jdbcType=VARCHAR},
+    linkid = #{linkid,jdbcType=INTEGER},
+    sort = #{sort,jdbcType=INTEGER},
+    isAlive = #{isalive,jdbcType=BIT},
+    createtime = #{createtime,jdbcType=TIMESTAMP},
+    remark = #{remark,jdbcType=VARCHAR}
+    where bid = #{bid,jdbcType=INTEGER}
+  </update>
+</mapper>

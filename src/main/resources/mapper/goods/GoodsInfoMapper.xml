@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.seed.dao.goodsmapper.IGoodsInfoMapper" >
+
+  <resultMap id="BaseResultMap" type="com.seed.entity.goods.GoodsInfo" >
+    <id column="gdid" property="gdid" jdbcType="INTEGER" />
+    <result column="topid" property="topid" jdbcType="INTEGER" />
+    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="sdrtid" property="sdrtid" jdbcType="INTEGER" />
+    <result column="brandid" property="brandid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="imgs" property="imgs" jdbcType="VARCHAR" />
+    <result column="intro" property="intro" jdbcType="VARCHAR" />
+    <result column="dtid" property="dtid" jdbcType="INTEGER" />
+    <result column="parmid" property="parmid" jdbcType="INTEGER" />
+    <result column="pagepv" property="pagepv" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="salesprice" property="salesprice" jdbcType="INTEGER" />
+    <result column="inventory" property="inventory" jdbcType="INTEGER" />
+    <result column="realsales" property="realsales" jdbcType="INTEGER" />
+    <result column="virtualsales" property="virtualsales" jdbcType="INTEGER" />
+    <result column="gdstatus" property="gdstatus" jdbcType="BIT" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="pubtime" property="pubtime" jdbcType="TIMESTAMP" />
+    <result column="outtime" property="outtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <!--简单版的map-->
+  <resultMap id="SimpResultMap" type="com.seed.entity.goods.SimpGoods">
+    <id column="gdid" property="gdid" jdbcType="INTEGER" />
+    <result column="topid" property="topid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="imgs" property="imgs" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="salesprice" property="salesprice" jdbcType="INTEGER" />
+    <result column="virtualsales" property="virtualsales" jdbcType="INTEGER" />
+  </resultMap>
+
+
+
+
+  <sql id="Base_Column_List" >
+    gdid, topid, typeid, sdrtid, brandid, name, imgs, intro, dtid, parmid, pagepv, price, 
+    salesprice, inventory, realsales, virtualsales, gdstatus, createtime, pubtime, outtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from seed_goods
+    where gdid = #{gdid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seed_goods
+    where gdid = #{gdid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.seed.entity.goods.GoodsInfo" >
+    insert into seed_goods (gdid, topid, typeid, 
+      sdrtid, brandid, name, 
+      imgs, intro, dtid, 
+      parmid, pagepv, price, 
+      salesprice, inventory, realsales, 
+      virtualsales, gdstatus, createtime, 
+      pubtime, outtime)
+    values (#{gdid,jdbcType=INTEGER}, #{topid,jdbcType=INTEGER}, #{typeid,jdbcType=INTEGER}, 
+      #{sdrtid,jdbcType=INTEGER}, #{brandid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{imgs,jdbcType=VARCHAR}, #{intro,jdbcType=VARCHAR}, #{dtid,jdbcType=INTEGER}, 
+      #{parmid,jdbcType=INTEGER}, #{pagepv,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, 
+      #{salesprice,jdbcType=INTEGER}, #{inventory,jdbcType=INTEGER}, #{realsales,jdbcType=INTEGER}, 
+      #{virtualsales,jdbcType=INTEGER}, #{gdstatus,jdbcType=BIT}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{pubtime,jdbcType=TIMESTAMP}, #{outtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.seed.entity.goods.GoodsInfo" >
+    insert into seed_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gdid != null" >
+        gdid,
+      </if>
+      <if test="topid != null" >
+        topid,
+      </if>
+      <if test="typeid != null" >
+        typeid,
+      </if>
+      <if test="sdrtid != null" >
+        sdrtid,
+      </if>
+      <if test="brandid != null" >
+        brandid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="imgs != null" >
+        imgs,
+      </if>
+      <if test="intro != null" >
+        intro,
+      </if>
+      <if test="dtid != null" >
+        dtid,
+      </if>
+      <if test="parmid != null" >
+        parmid,
+      </if>
+      <if test="pagepv != null" >
+        pagepv,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="salesprice != null" >
+        salesprice,
+      </if>
+      <if test="inventory != null" >
+        inventory,
+      </if>
+      <if test="realsales != null" >
+        realsales,
+      </if>
+      <if test="virtualsales != null" >
+        virtualsales,
+      </if>
+      <if test="gdstatus != null" >
+        gdstatus,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="pubtime != null" >
+        pubtime,
+      </if>
+      <if test="outtime != null" >
+        outtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gdid != null" >
+        #{gdid,jdbcType=INTEGER},
+      </if>
+      <if test="topid != null" >
+        #{topid,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="sdrtid != null" >
+        #{sdrtid,jdbcType=INTEGER},
+      </if>
+      <if test="brandid != null" >
+        #{brandid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs != null" >
+        #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="dtid != null" >
+        #{dtid,jdbcType=INTEGER},
+      </if>
+      <if test="parmid != null" >
+        #{parmid,jdbcType=INTEGER},
+      </if>
+      <if test="pagepv != null" >
+        #{pagepv,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="salesprice != null" >
+        #{salesprice,jdbcType=INTEGER},
+      </if>
+      <if test="inventory != null" >
+        #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="realsales != null" >
+        #{realsales,jdbcType=INTEGER},
+      </if>
+      <if test="virtualsales != null" >
+        #{virtualsales,jdbcType=INTEGER},
+      </if>
+      <if test="gdstatus != null" >
+        #{gdstatus,jdbcType=BIT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pubtime != null" >
+        #{pubtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outtime != null" >
+        #{outtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.seed.entity.goods.GoodsInfo" >
+    update seed_goods
+    <set >
+      <if test="topid != null" >
+        topid = #{topid,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null" >
+        typeid = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="sdrtid != null" >
+        sdrtid = #{sdrtid,jdbcType=INTEGER},
+      </if>
+      <if test="brandid != null" >
+        brandid = #{brandid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs != null" >
+        imgs = #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        intro = #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="dtid != null" >
+        dtid = #{dtid,jdbcType=INTEGER},
+      </if>
+      <if test="parmid != null" >
+        parmid = #{parmid,jdbcType=INTEGER},
+      </if>
+      <if test="pagepv != null" >
+        pagepv = #{pagepv,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="salesprice != null" >
+        salesprice = #{salesprice,jdbcType=INTEGER},
+      </if>
+      <if test="inventory != null" >
+        inventory = #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="realsales != null" >
+        realsales = #{realsales,jdbcType=INTEGER},
+      </if>
+      <if test="virtualsales != null" >
+        virtualsales = #{virtualsales,jdbcType=INTEGER},
+      </if>
+      <if test="gdstatus != null" >
+        gdstatus = #{gdstatus,jdbcType=BIT},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pubtime != null" >
+        pubtime = #{pubtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outtime != null" >
+        outtime = #{outtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where gdid = #{gdid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.seed.entity.goods.GoodsInfo" >
+    update seed_goods
+    set topid = #{topid,jdbcType=INTEGER},
+      typeid = #{typeid,jdbcType=INTEGER},
+      sdrtid = #{sdrtid,jdbcType=INTEGER},
+      brandid = #{brandid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      imgs = #{imgs,jdbcType=VARCHAR},
+      intro = #{intro,jdbcType=VARCHAR},
+      dtid = #{dtid,jdbcType=INTEGER},
+      parmid = #{parmid,jdbcType=INTEGER},
+      pagepv = #{pagepv,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      salesprice = #{salesprice,jdbcType=INTEGER},
+      inventory = #{inventory,jdbcType=INTEGER},
+      realsales = #{realsales,jdbcType=INTEGER},
+      virtualsales = #{virtualsales,jdbcType=INTEGER},
+      gdstatus = #{gdstatus,jdbcType=BIT},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      pubtime = #{pubtime,jdbcType=TIMESTAMP},
+      outtime = #{outtime,jdbcType=TIMESTAMP}
+    where gdid = #{gdid,jdbcType=INTEGER}
+  </update>
+</mapper>

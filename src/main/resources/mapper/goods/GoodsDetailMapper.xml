@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.seed.dao.goodsmapper.IGoodsDetailMapper" >
+
+  <resultMap id="BaseResultMap" type="com.seed.entity.goods.GoodsDetail" >
+    <id column="dtid" property="dtid" jdbcType="INTEGER" />
+    <result column="gdid" property="gdid" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="detail" property="detail" jdbcType="BLOB" typeHandler="com.seed.myUtil.ConvertBlobTypeHandler"/>
+    <result column="pramdetail" property="pramdetail" jdbcType="BLOB" typeHandler="com.seed.myUtil.ConvertBlobTypeHandler"/>
+  </resultMap>
+
+
+  <sql id="Base_Column_List" >
+    dtid, gdid, detail, pramdetail,createtime
+  </sql>
+
+  <!-- 为了防止查询出多条数据 这里，加个limit -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from seed_goods_detail
+    where dtid = #{dtid,jdbcType=INTEGER} limit 1
+  </select>
+
+
+
+</mapper>

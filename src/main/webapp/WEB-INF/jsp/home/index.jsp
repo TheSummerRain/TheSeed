@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   Author: JACK
@@ -6,12 +7,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/plugjsp/header.jsp" %>
 <script src="<%=bp%>/css/js/swipe.js"></script>
+
 <script>
     $(function () {
         var slider = Swipe(document.getElementById('slider'), {
             auto: 3000,
             continuous: true,
-            callback: function(pos) {
+            callback: function (pos) {
                 var i = bullets.length;
                 while (i--) {
                     bullets[i].className = ' ';
@@ -20,12 +22,15 @@
             }
         });
         var bullets = document.getElementById('position').getElementsByTagName('li');
-        $(".toggle").click(function(){
+        $(".toggle").click(function () {
             $(this).toggleClass("sel");
             $("#zys").toggle();
-            vh=$(".nav").height()+64;
-            if($(".nav").is(":visible")==false){
-                $("#content").css("margin-top","54px");}else{$("#content").css("margin-top",vh);}
+            vh = $(".nav").height() + 64;
+            if ($(".nav").is(":visible") == false) {
+                $("#content").css("margin-top", "54px");
+            } else {
+                $("#content").css("margin-top", vh);
+            }
         })
     });
 </script>
@@ -38,40 +43,19 @@
 <body>
 
 
-<%--
-<div class="userTop"><a href="#" class="closeBtn"><i class="iconfont icon-close"></i></a>
-    <div class="plr15">
-        <div class="userImg"><img src="<%=bp%>/images/user.jpg" alt=""></div>
-        <div class="pl10 ovh fl mt15">
-            <h1 class="title cwh">来自<span class="cgr mLR5">小曹</span>的推荐</h1>
-            <h2 class="title cwh">立即关注，狂赚佣金</h2>
-        </div>
-        <div class="pl10 ovh fr mt20">
-            <a href="#" class="fr weui_btn weui_btn_primary weui_btn_mini">点击关注</a>
-        </div>
-    </div>
-    <script>
-        $(function (){
-            $(".closeBtn").click(function(){
-                $(".userTop").toggle();})
-        })
-    </script>
-</div>
---%>
-
 <div class="content js_container mt0">
+
+    <!-- banner 区域 -->
     <div class="topImg bgwh">
         <div id="slider" class="swipe" style="visibility: visible;">
             <div class="swipe-wrap">
-                <figure>
-                    <div class="wrap"> <a href="#"><img src="<%=bp%>/images/news/u236.jpg" alt="" class="pct100"></a> </div>
-                </figure>
-                <figure>
-                    <div class="wrap"> <a href="#"><img src="<%=bp%>/images/news/u237.jpg" alt="" class="pct100"></a> </div>
-                </figure>
-                <figure>
-                    <div class="wrap"> <a href="#"><img src="<%=bp%>/images/news/u238.jpg" alt="" class="pct100"></a> </div>
-                </figure>
+
+                <c:forEach items="${baner}" var="ba">
+                    <figure>
+                        <div class="wrap"><a href="#"><img src="<%=bp%>${ba.bimgurl}" alt="" class="pct100"></a>
+                        </div>
+                    </figure>
+                </c:forEach>
             </div>
         </div>
         <nav>
@@ -82,11 +66,24 @@
             </ul>
         </nav>
     </div>
-    <!--产品分类-->
-    <div class="rel bgwh"><a href="我的微店.html" class="logo"><img src="<%=bp%>/images/erwm.jpg" alt=""></a>
-        <nav class="navItem bgb"><a href="品牌介绍.html"><i class="iconfont icon-icon4"></i><span>品牌介绍</span></a><a href="购物车.html"><i class="iconfont icon-goumai"></i><span>购物车</span></a><a href="会员中心.html"><i class="iconfont icon-zhanghao"></i><span>会员中心</span></a><a href="javascript:void(0)" class="toggle"><i class="iconfont icon-caidan"></i><span>所有商品</span></a></nav>
+
+    <!--产品分类，可隐藏 -->
+    <div class="rel bgwh">
+        <a href="#" class="logo"><img src="<%=bp%>/images/erwm.jpg" alt=""></a>
+        <nav class="navItem bgb">
+            <a href="品牌介绍.html"><i class="iconfont icon-icon4"></i><span>品牌介绍</span></a>
+            <a href="购物车.html"><i class="iconfont icon-goumai"></i><span>购物车</span></a>
+            <a href="会员中心.html"><i class="iconfont icon-zhanghao"></i><span>会员中心</span></a>
+            <a href="javascript:void(0)" class="toggle"><i class="iconfont icon-caidan"></i><span>所有商品</span></a>
+        </nav>
     </div>
-    <div  class="note"><i class="iconfont mr5 icon-comiisgonggao"></i><div class="diib">这是促销信息就疯，狂的就疯狂大家分叫快递费就。</div></div>
+
+    <!-- 日志公告 可隐藏 -->
+    <div class="note"><i class="iconfont mr5 icon-comiisgonggao"></i>
+        <div class="diib">一些重要公告说明，可以写一句话放这里</div>
+    </div>
+
+    <!-- 产品列表，可隐藏 -->
     <div class="itemList" id="zys" style="display:none">
         <ul>
             <li class="pct30"><a href="产品列表.html">产品发发接口的</a></li>
@@ -99,136 +96,47 @@
             <li class="pct30"><a href="产品列表.html">产品发发接口的</a></li>
         </ul>
     </div>
-    <!--产品分类结束-->
-    <h2 class="title proTitle">将开发的接口附件的开发的看<a href="产品列表.html" class="more r20">更多>></a></h2>
+
+    <!-- 主内容区域 -->
+    <h2 class="title proTitle">车载电器<a href="<%=bp%>/home/sort/1" class="more r20">更多>></a></h2>
     <ul class="proList">
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">泰济生生物治疗套餐泰济生生物治疗套餐， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
+        <c:forEach var="g1" items="${gods1}">
+            <li><a href="<%=bp%>/goods/detail/${g1.gdid}" class="newsListImg"><img src="<%=bp%>${g1.imgs}" alt="">
+                <h1 class="title">${g1.name}</h1>
+                <p class="fa">价格：<span class="cr b">￥${g1.price/100}</span></p>
+                <p class="cg fa">已售：${g1.virtualsales} 笔</p></a>
+            </li>
+        </c:forEach>
     </ul>
-    <h2 class="title proTitle mt15">刀剑私服粮食店街<a href="产品列表.html" class="more r20">更多>></a></h2>
+
+
+    <h2 class="title proTitle">汽车装饰<a href="<%=bp%>/home/sort/2" class="more r20">更多>></a></h2>
     <ul class="proList">
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
+        <c:forEach var="g2" items="${gods2}">
+            <li><a href="<%=bp%>/goods/detail/${g2.gdid}" class="newsListImg"><img src="<%=bp%>${g2.imgs}" alt="">
+                <h1 class="title">${g2.name}</h1>
+                <p class="fa">价格：<span class="cr b">￥${g2.price/100}</span></p>
+                <p class="cg fa">已售：${g2.virtualsales} 笔</p></a>
+            </li>
+        </c:forEach>
     </ul>
-    <h2 class="title proTitle mt15">袋鼠杰克法律手段金连科<a href="产品列表.html" class="more r20">更多>></a></h2>
+
+    <h2 class="title proTitle">美容清洗<a href="<%=bp%>/home/sort/3" class="more r20">更多>></a></h2>
     <ul class="proList">
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
-        <li><a href="产品详细.html" class="newsListImg"><img src="<%=bp%>/images/ab5.jpg" alt="">
-            <h1 class="title">风纪扣的所将拉风的拉萨解放路的发快递所将垃圾费零距离， 健康的就疯狂圣诞节快，范德萨范德萨，范德萨范德萨发的撒。</h1>
-            <p class="fa">价格：<span class="cr b">￥1600.00</span></p>
-            <p class="cg fa">已售：1722 笔</p>
-        </a> </li>
+        <c:forEach var="g3" items="${gods3}">
+            <li><a href="<%=bp%>/goods/detail/${g3.gdid}" class="newsListImg"><img src="<%=bp%>${g3.imgs}" alt="">
+                <h1 class="title">${g3.name}</h1>
+                <p class="fa">价格：<span class="cr b">￥${g3.price / 100}</span></p>
+                <p class="cg fa">已售：${g3.virtualsales} 笔</p></a>
+            </li>
+        </c:forEach>
     </ul>
+
+
 </div>
 
-<footer class="footer inline-box">
-    <a href="我的微店.html" class="inline_four active">
-        <p><i class="iconfont icon-dianpu f20"></i></p>
-        <p>我的微店</p>
-    </a>
-
-    <a href="搜索.html" class="inline_four">
-        <p><i class="iconfont icon-search f20"></i></p>
-        <p>搜索</p>
-    </a>
-
-    <a href="微店管理.html" class="inline_four">
-        <p><i class="iconfont icon-woguanlidedianpu f20"></i></p>
-        <p>微店管理</p>
-    </a>
-
-    <a href="会员中心.html" class="inline_four">
-        <p><i class="iconfont icon-zhanghao1 f20"></i></p>
-        <p>会员中心</p>
-    </a>
-
-</footer>
-
-<script src="<%=bp%>/css/js/js.js"></script>
-<script src="<%=bp%>/css/fastclick.js"></script>
-<script>
-    FastClick.attach(document.body);
-</script>
+<%--引入footer.jsp--%>
+<%@ include file="/plugjsp/footer.jsp" %>
 
 
 </body>

@@ -1,11 +1,16 @@
 package com.seed.controller.homeController;
 
 import com.seed.controller.SeedBaseController;
+import com.seed.entity.goods.SimpGoods;
+import com.seed.mydict.ImportDict;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @description 这个是主页，默认进来的页面。也是主要的分类页。
@@ -20,7 +25,7 @@ public class HomeController extends SeedBaseController {
 
     /**
      * @param request 请求
-     * @param model model 对象。
+     * @param model   model 对象。
      * @return
      * @description 跳转到分类页，进入商城的第一入口。（按md，在按Tab就可马上打印这个模板。)
      * @author Jack
@@ -30,8 +35,36 @@ public class HomeController extends SeedBaseController {
     public String goHomePage(HttpServletRequest request, Model model) {
 
         //1、获取轮播banner数据。
-        //2、获取最新的分类信息数据。（如果后期稳定，可以写死）
+        model.addAttribute("baner", getBanner());
+
+
+        //2、获取最新的分类信息数据。（获取最高分类项目）【这里前台写死】
+
         //3、数据传递到页面。页面跳转，并加载数据。
+        List<SimpGoods> ls = goodsService.getSimpGoodsList();
+        if (null == ls) {
+            return null;
+        }
+
+        List<SimpGoods> list1 = new ArrayList<SimpGoods>();
+        List<SimpGoods> list2 = new ArrayList<SimpGoods>();
+        List<SimpGoods> list3 = new ArrayList<SimpGoods>();
+
+        for (SimpGoods sd : ls) {
+            if (1 == sd.getTopid()) {
+                list1.add(sd);
+            }
+            if (2 == sd.getTopid()) {
+                list2.add(sd);
+            }
+            if (3 == sd.getTopid()) {
+                list3.add(sd);
+            }
+        }
+
+        model.addAttribute("gods1", list1);
+        model.addAttribute("gods2", list2);
+        model.addAttribute("gods3", list3);
 
         return "home/index";
     }
@@ -67,19 +100,26 @@ public class HomeController extends SeedBaseController {
     }
 
     /**
-     * @description 根据用户点击的某个具体的二级大类，跳转到同类商品的列表页面。
-     * @author Jack
      * @param request
      * @param model
      * @return
+     * @description 根据用户点击的某个具体的二级大类，跳转到同类商品的列表页面。
+     * @author Jack
      * @date 23:30
      */
-    public String homeSortList(HttpServletRequest request, Model model) {
+    @RequestMapping("/sort/{typeId}")
+    public String homeSortList(@PathVariable int typeId, HttpServletRequest request, Model model) {
 
         //1、查询大类下的所有商品。默认是按照销量排序的（前10条数据）
         //2、带数据跳转。
+        //这里简化写。
 
-        return "跳转到具体的某项分类列表里";
+        System.out.println("typeID = "+ typeId);
+        List<SimpGoods> ls =  goodsService.getSortGoodsList(typeId);
+        model.addAttribute("goodslst",ls);
+        model.addAttribute("ListName", ImportDict.topType.get(typeId));
+
+        return "home/sortlist";
     }
 
 
