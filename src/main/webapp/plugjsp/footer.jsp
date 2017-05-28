@@ -6,27 +6,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <footer class="footer inline-box">
-    <a href="我的微店.html" class="inline_four active">
+    <a href="<%=bp%>/home/shouye" class="inline_four active">
         <p><i class="iconfont icon-dianpu f20"></i></p>
-        <p>我的微店</p>
+        <p>小店</p>
     </a>
 
-    <a href="搜索.html" class="inline_four">
+    <a href="<%=bp%>/search/toSearchPage" class="inline_four">
         <p><i class="iconfont icon-search f20"></i></p>
         <p>搜索</p>
     </a>
 
-    <a href="微店管理.html" class="inline_four">
+    <a href="<%=bp%>/cart/toMyCartPage" class="inline_four">
         <p><i class="iconfont icon-woguanlidedianpu f20"></i></p>
         <p>购物车</p>
     </a>
 
     <a href="<%=bp%>/user/getOneUser" class="inline_four">
         <p><i class="iconfont icon-zhanghao1 f20"></i></p>
-        <p>会员中心</p>
+        <p>会员</p>
     </a>
 
 </footer>
+
+
 
 <script src="<%=bp%>/css/js/js.js"></script>
 <script src="<%=bp%>/css/fastclick.js"></script>

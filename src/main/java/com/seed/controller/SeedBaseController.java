@@ -1,11 +1,15 @@
 package com.seed.controller;
 
+import com.seed.dao.orderMapper.ICartMapper;
 import com.seed.entity.banner.BannerInfo;
+import com.seed.entity.user.WXUserInfo;
 import com.seed.myUtil.PropertyManager;
 import com.seed.myUtil.myWxMpServiceUtils;
+import com.seed.mydict.ImportDict;
 import com.seed.service.bannerService.IBannerService;
 import com.seed.service.bookservice.IBookInfoService;
 import com.seed.service.goodsservice.IGoodsService;
+import com.seed.service.orderService.ICartService;
 import com.seed.service.userservice.IUserInfoService;
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
@@ -47,6 +51,10 @@ public abstract class SeedBaseController {
 
     @Autowired
     protected IGoodsService goodsService;
+
+    @Autowired
+    protected ICartService cartService;
+
     /*===================== 2、注册其他服务 =========================*/
 
 
@@ -97,6 +105,12 @@ public abstract class SeedBaseController {
             lb.add(bf);
         }
         return lb;
+    }
+
+    //从session获取用户信息。
+    public WXUserInfo getUserInfoFromSession(HttpServletRequest request){
+        WXUserInfo wf =  (WXUserInfo) request.getSession().getAttribute(ImportDict.USER_IN_SESSION);
+        return wf;
     }
 
 
