@@ -116,5 +116,7 @@
     <orderEntry type="library" name="Maven: com.github.binarywang:qrcode-utils:1.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.zxing:core:3.2.1" level="project" />
     <orderEntry type="library" name="Maven: joda-time:joda-time:2.9.9" level="project" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="html5shiv" level="application" />
   </component>
 </module>

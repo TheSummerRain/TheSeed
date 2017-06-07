@@ -24,7 +24,7 @@
 <div class="content js_container">
 
     <div class="weui_cells weui_cells_access">
-        <a class="weui_cell" href="填加地址.html">
+        <a class="weui_cell" href="<%=bp%>/addrs/toaddrs"> <!-- 这里应该跳转修改界面 -->
             <div class="weui_cell_hd"><i class="iconfont icon-address mr5"></i></div>
             <div class="weui_cell_bd weui_cell_primary">
                 <p class="b">曹达清<span class="nb f12 ml10 cGray">18954215471</span></p>
@@ -36,7 +36,7 @@
 
 
     <div class="weui_cells weui_cells_access">
-        <a class="weui_cell" href="填加地址.html">
+        <a class="weui_cell" href="<%=bp%>/addrs/toaddrs">
             <div class="weui_cell_hd"><i class="iconfont icon-address mr5"></i></div>
             <div class="weui_cell_bd weui_cell_primary">
                 <p>请添加收货地址</p>
