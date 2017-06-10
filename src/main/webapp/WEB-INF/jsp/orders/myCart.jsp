@@ -15,36 +15,40 @@
 <body>
 
 
-<div class="header"><a href="javascript:history.go(-1)" class="iconfont back" style="left:0"></a><a href="我的微店.html"
-                                                                                                    class="iconfont shopHome"
-                                                                                                    style="right:0"></a>
+<div class="header">
+    <a href="javascript:history.go(-1)" class="iconfont back" style="left:0"></a>
+    <a href="<%=bp%>/home/shouye"
+       class="iconfont shopHome"
+       style="right:0"></a>
     <h1>购物车</h1>
 </div>
 
 <div class="content js_container">
 
-    <div class="weui_cells weui_cells_access">
-        <a class="weui_cell" href="<%=bp%>/addrs/toaddrs"> <!-- 这里应该跳转修改界面 -->
-            <div class="weui_cell_hd"><i class="iconfont icon-address mr5"></i></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p class="b">曹达清<span class="nb f12 ml10 cGray">18954215471</span></p>
-                <p>天津市 南开区 王顶堤慢慢人生路</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>
-    </div>
+    <c:if test="${null != addrs}">
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" href="<%=bp%>/addrs/myAddrList"> <!-- 这里应该跳转修改界面 -->
+                <div class="weui_cell_hd"><i class="iconfont icon-address mr5"></i></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p class="b">${addrs.recname}<span class="nb f12 ml10 cGray">${addrs.recmobile}</span></p>
+                    <p>${addrs.province} ${addrs.city} ${addrs.county}${addrs.detailaddrs}</p>
+                </div>
+                <div class="weui_cell_ft"></div>
+            </a>
+        </div>
+    </c:if>
 
-
-    <div class="weui_cells weui_cells_access">
-        <a class="weui_cell" href="<%=bp%>/addrs/toaddrs">
-            <div class="weui_cell_hd"><i class="iconfont icon-address mr5"></i></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>请添加收货地址</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>
-    </div>
-
+    <c:if test="${null == addrs}">
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" href="<%=bp%>/addrs/myAddrList">
+                <div class="weui_cell_hd"><i class="iconfont icon-address mr5"></i></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>选择收获地址</p>
+                </div>
+                <div class="weui_cell_ft"></div>
+            </a>
+        </div>
+    </c:if>
 
     <h1 class="tc title mt10 mb10">商品详情</h1>
     <div class="p10 bgwh pb0">
@@ -62,9 +66,12 @@
                            class="title">${cart.get("name")}</a>
                         <p><b class="cr">￥${cart.get('price') / 100 }</b></p>
                         <p class="pro pl0 tr">
-                            <i class="min" onclick="javascript:minnum(${cart.get('cartId')},${cart.get('price')/100});"></i>
-                            <input type="text" value="1" size="4" class="tc h33" id="text${cart.get('cartId')}"  readonly="readonly" >
-                            <i class="add" onclick="javascript:addnum(${cart.get('cartId')},${cart.get('price')/100});"></i>
+                            <i class="min"
+                               onclick="javascript:minnum(${cart.get('cartId')},${cart.get('price')/100});"></i>
+                            <input type="text" value="1" size="4" class="tc h33" id="text${cart.get('cartId')}"
+                                   readonly="readonly">
+                            <i class="add"
+                               onclick="javascript:addnum(${cart.get('cartId')},${cart.get('price')/100});"></i>
                         </p>
                     </div>
                 </li>
@@ -82,13 +89,13 @@
         </div>
     </div>
 
-   <%-- <div class="weui_cells weui_cells_access"><a class="weui_cell" href="代金券.html">
-        <div class="weui_cell_hd"><i class="iconfont icon-quan mr5"></i></div>
-        <div class="weui_cell_bd weui_cell_primary">
-            <p>代金券</p>
-        </div>
-        <div class="weui_cell_ft">有<span class="cr b ml5 mr5">2</span>张可用</div>
-    </a></div>--%>
+    <%-- <div class="weui_cells weui_cells_access"><a class="weui_cell" href="代金券.html">
+         <div class="weui_cell_hd"><i class="iconfont icon-quan mr5"></i></div>
+         <div class="weui_cell_bd weui_cell_primary">
+             <p>代金券</p>
+         </div>
+         <div class="weui_cell_ft">有<span class="cr b ml5 mr5">2</span>张可用</div>
+     </a></div>--%>
 
     <div class="tr p15">
         <p class="f12 mb5">运费：<span class="cr fa">¥0.00</span></p>
@@ -101,24 +108,24 @@
 
 <script type="text/javascript">
 
-    function minnum(num,prince) {
-       if(parseInt($("#text"+num).val())<=1){
-        alert("不能再少了！");
+    function minnum(num, prince) {
+        if (parseInt($("#text" + num).val()) <= 1) {
+            alert("不能再少了！");
             return;
-       }
-        $("#text"+num).val($("#text"+num).val()-1);
-        $("#totalprice").html( $("#totalprice").html()-prince);
+        }
+        $("#text" + num).val($("#text" + num).val() - 1);
+        $("#totalprice").html($("#totalprice").html() - prince);
     }
 
-    function addnum(num,prince) {
-        if(num > 100){
+    function addnum(num, prince) {
+        if (num > 100) {
             alert("超过最大值");
             return;
         }
-        $("#text"+num).val(parseFloat($("#text"+num).val())+1);
-        $("#totalprice").html( parseFloat($("#totalprice").html())+prince);
+        $("#text" + num).val(parseFloat($("#text" + num).val()) + 1);
+        $("#totalprice").html(parseFloat($("#totalprice").html()) + prince);
     }
-    
+
 
 </script>
 

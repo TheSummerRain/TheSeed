@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.seed.dao.usermapper.ISeedAddrsMapper" >
+  <resultMap id="BaseResultMap" type="com.seed.entity.user.SeedAddrs" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="detailaddrs" property="detailaddrs" jdbcType="VARCHAR" />
+    <result column="recname" property="recname" jdbcType="VARCHAR" />
+    <result column="recmobile" property="recmobile" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="isdefault" property="isdefault" jdbcType="BIT" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, province, city, county, detailaddrs, recname, recmobile, userid, isdefault, createtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from seed_addrs
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seed_addrs
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.seed.entity.user.SeedAddrs" >
+    insert into seed_addrs (id, province, city,
+    county, detailaddrs, recname,
+    recmobile, userid, isdefault,
+    createtime)
+    values (#{id,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+    #{county,jdbcType=VARCHAR}, #{detailaddrs,jdbcType=VARCHAR}, #{recname,jdbcType=VARCHAR},
+    #{recmobile,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{isdefault,jdbcType=BIT},
+    #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.seed.entity.user.SeedAddrs" useGeneratedKeys="true" keyProperty="id">
+    insert into seed_addrs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="detailaddrs != null" >
+        detailaddrs,
+      </if>
+      <if test="recname != null" >
+        recname,
+      </if>
+      <if test="recmobile != null" >
+        recmobile,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="isdefault != null" >
+        isdefault,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="detailaddrs != null" >
+        #{detailaddrs,jdbcType=VARCHAR},
+      </if>
+      <if test="recname != null" >
+        #{recname,jdbcType=VARCHAR},
+      </if>
+      <if test="recmobile != null" >
+        #{recmobile,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="isdefault != null" >
+        #{isdefault,jdbcType=BIT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.seed.entity.user.SeedAddrs" >
+    update seed_addrs
+    <set >
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="detailaddrs != null" >
+        detailaddrs = #{detailaddrs,jdbcType=VARCHAR},
+      </if>
+      <if test="recname != null" >
+        recname = #{recname,jdbcType=VARCHAR},
+      </if>
+      <if test="recmobile != null" >
+        recmobile = #{recmobile,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="isdefault != null" >
+        isdefault = #{isdefault,jdbcType=BIT},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.seed.entity.user.SeedAddrs" >
+    update seed_addrs
+    set province = #{province,jdbcType=VARCHAR},
+    city = #{city,jdbcType=VARCHAR},
+    county = #{county,jdbcType=VARCHAR},
+    detailaddrs = #{detailaddrs,jdbcType=VARCHAR},
+    recname = #{recname,jdbcType=VARCHAR},
+    recmobile = #{recmobile,jdbcType=VARCHAR},
+    userid = #{userid,jdbcType=INTEGER},
+    isdefault = #{isdefault,jdbcType=BIT},
+    createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

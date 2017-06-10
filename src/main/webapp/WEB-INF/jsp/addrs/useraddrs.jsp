@@ -11,15 +11,15 @@
     <title>地址管理</title>
     <link rel="stylesheet" href="<%=bp%>/css/common.css">
     <link rel="stylesheet" href="<%=bp%>/css/main.css">
-    <script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
 </head>
 <body>
 
 
 
 
-<div class="header">
-    <a href="地址.html" class="hdBtn">保存</a><a href="javascript:history.go(-1)" class="iconfont back" style="left:0"></a>
+<div class="header"><%----%>
+    <a href="javascript:save();" class="hdBtn">保存</a>
+    <a href="javascript:history.go(-1)" class="iconfont back" style="left:0"></a>
     <h1>填加地址</h1>
 </div>
 
@@ -30,7 +30,7 @@
                 <label for="" class="weui_label">姓名</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="text" value="" placeholder="输入真实姓名">
+                <input id="username" name="username" class="weui_input" type="text" value="" placeholder="输入真实姓名" maxlength="25">
             </div>
         </div>
         <div class="weui_cell">
@@ -38,57 +38,77 @@
                 <label for="" class="weui_label">手机</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="text" value="" placeholder="输入手机号">
+                <input id="mobile" name="mobile" class="weui_input" type="text" value="" placeholder="输入手机号" maxlength="11">
             </div>
         </div>
     </div>
-    <div class="weui_cells_title">收货地址:这里可以把省市区固定死，不支持安阳市外的。</div>
-
+    <div class="weui_cells_title">收货地址</div>
     <div class="weui_cells">
-
-
-        <div class="jq22-container">
-            <form class="form-inline">
-                <div data-toggle="distpicker">
-                    <div class="form-group">
-                        <label class="sr-only" for="province3">选择省：</label>
-                        <select class="form-control" id="province3" data-province="河南省"></select>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="city3">选择市：</label>
-                        <select class="form-control" id="city3" data-city="安阳市"></select>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="district3">选择县、区：</label>
-                        <select class="form-control" id="district3" data-district="林州市"></select>
-                    </div>
-                </div>
-            </form>
+        <div class="weui_cell weui_cell_select weui_select_after">
+            <div class="weui_cell_hd">
+                省
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <select class="weui_select" name="select1">
+                    <option selected="" value="1">河南省</option>
+                </select>
+            </div>
         </div>
-
-
+        <div class="weui_cell weui_cell_select weui_select_after">
+            <div class="weui_cell_hd">
+                市
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <select class="weui_select" name="select1">
+                    <option selected="" value="1">安阳市</option>
+                </select>
+            </div>
+        </div>
+        <div class="weui_cell weui_cell_select weui_select_after">
+            <div class="weui_cell_hd">
+                区/县
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <select class="weui_select" name="select2">
+                    <option value="1">林州市</option>
+                </select>
+            </div>
+        </div>
         <div class="weui_cell">
             <div class="weui_cell_hd">
                 <label for="" class="weui_label">详细</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="text" value="" placeholder="输入详细地址">
+                <input id="xiangxi" name="xiangxi" class="weui_input" type="text" value="" placeholder="输入详细地址" maxlength="100">
             </div>
         </div>
     </div>
-
 </div>
 
+<script>
+function save() {
+    var username = $("#username").val();
+    if(username.length==0){
+        alert("姓名不能为空");
+        return;
+    }
+    var mobile =$("#mobile").val();
+    if(mobile.length==0){
+        alert("请填写一个正确的手机号");
+        return;
+    }
+    var xiangxi = $("#xiangxi").val();
+    if(xiangxi.length==0){
+        alert("请填写详细地址");
+        return;
+    }
+
+    window.location.href = "<%=bp%>/addrs/istAddr?username="+username+"&mobile="+mobile+"&xiangxi="+xiangxi;
+   // $.post("<%=bp%>/addrs/istAddr",{username:username,mobile:mobile,xiangxi:xiangxi});
+}
 
 
+</script>
 
-
-<script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-<script src="<%=bp%>/js/addrplus/distpicker.data.js"></script>
-<script src="<%=bp%>/js/addrplus/distpicker.js"></script>
-<script src="<%=bp%>/js/addrplus/main.js"></script>
 </body>
 </html>

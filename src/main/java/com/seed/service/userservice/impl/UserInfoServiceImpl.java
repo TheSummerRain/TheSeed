@@ -1,10 +1,14 @@
 package com.seed.service.userservice.impl;
 
+import com.seed.dao.usermapper.ISeedAddrsMapper;
 import com.seed.dao.usermapper.IWXUserInfoMapper;
+import com.seed.entity.user.SeedAddrs;
 import com.seed.entity.user.WXUserInfo;
 import com.seed.service.userservice.IUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Author Jack
@@ -18,6 +22,10 @@ public class UserInfoServiceImpl implements IUserInfoService {
 
     @Autowired
     private IWXUserInfoMapper wxUserInfoMapper;  //idea，对mybatis需要插件支持，不用理会。
+
+    @Autowired
+    private ISeedAddrsMapper addrsMapper;
+
 
     /**
      * @param userId 用户ID
@@ -59,6 +67,28 @@ public class UserInfoServiceImpl implements IUserInfoService {
 
     public int checkHasByOpenId(String openId) {
         return wxUserInfoMapper.checkByOpenId(openId);
+    }
+
+    public int insertAddrs(SeedAddrs seedAddrs) {
+        return addrsMapper.insertSelective(seedAddrs);
+    }
+
+    public int updateAddrs(SeedAddrs seedAddrs) {
+        return addrsMapper.updateByPrimaryKeySelective(seedAddrs);
+    }
+
+    public SeedAddrs searchAddrsByUserId(int userid) {
+        return addrsMapper.searchAddrsByUserId(userid);
+    }
+
+    public List<SeedAddrs> getMyAddrListByUserId(Integer userid) {
+        return addrsMapper.getMyAddrListByUserId(userid);
+    }
+
+
+    public void updateAddrDefaultByAddrId(Integer userid, int addrId) {
+        addrsMapper.cleanAddrDefault(userid);
+        addrsMapper.updateAddrDefaultByAddrId(addrId);
     }
 
 

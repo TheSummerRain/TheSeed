@@ -28,6 +28,8 @@ public class CartController extends SeedBaseController{
         List<HashMap<String ,Object>> mycart  = cartService.searchCartinfo(wf.getUserid());
         model.addAttribute("mycart",mycart);
 
+        model.addAttribute("addrs",userInfoService.searchAddrsByUserId(wf.getUserid()));
+
         return "orders/myCart";
     }
 
