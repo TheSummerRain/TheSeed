@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.seed.dao.orderMapper.IOrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.seed.entity.order.Orders" >
+    <id column="orderId" property="orderid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="goodList" property="goodlist" jdbcType="VARCHAR" />
+    <result column="payMoney" property="paymoney" jdbcType="INTEGER" />
+    <result column="payState" property="paystate" jdbcType="INTEGER" />
+    <result column="addrId" property="addrid" jdbcType="INTEGER" />
+    <result column="addrBackUp" property="addrbackup" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="orderNo" property="orderno" jdbcType="VARCHAR" />
+    <result column="wecatOrderNo" property="wecatorderno" jdbcType="VARCHAR" />
+    <result column="finishTime" property="finishtime" jdbcType="TIMESTAMP" />
+    <result column="returnMsg" property="returnmsg" jdbcType="VARCHAR" />
+    <result column="cartList" property="cartlist" jdbcType="VARCHAR" />
+    <result column="detail" property="detail" jdbcType="VARCHAR" />
+    <result column="createIp" property="createip" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orderId, userId, goodList, payMoney, payState, addrId, addrBackUp, createTime, orderNo, 
+    wecatOrderNo, finishTime, returnMsg, cartList, detail, createIp
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from seed_orders
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seed_orders
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.seed.entity.order.Orders" >
+    insert into seed_orders (orderId, userId, goodList, 
+      payMoney, payState, addrId, 
+      addrBackUp, createTime, orderNo, 
+      wecatOrderNo, finishTime, returnMsg, 
+      cartList, detail, createIp
+      )
+    values (#{orderid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{goodlist,jdbcType=VARCHAR}, 
+      #{paymoney,jdbcType=INTEGER}, #{paystate,jdbcType=INTEGER}, #{addrid,jdbcType=INTEGER}, 
+      #{addrbackup,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{orderno,jdbcType=VARCHAR}, 
+      #{wecatorderno,jdbcType=VARCHAR}, #{finishtime,jdbcType=TIMESTAMP}, #{returnmsg,jdbcType=VARCHAR}, 
+      #{cartlist,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, #{createip,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.seed.entity.order.Orders" useGeneratedKeys="true" keyProperty="orderid">
+    insert into seed_orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        orderId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="goodlist != null" >
+        goodList,
+      </if>
+      <if test="paymoney != null" >
+        payMoney,
+      </if>
+      <if test="paystate != null" >
+        payState,
+      </if>
+      <if test="addrid != null" >
+        addrId,
+      </if>
+      <if test="addrbackup != null" >
+        addrBackUp,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="orderno != null" >
+        orderNo,
+      </if>
+      <if test="wecatorderno != null" >
+        wecatOrderNo,
+      </if>
+      <if test="finishtime != null" >
+        finishTime,
+      </if>
+      <if test="returnmsg != null" >
+        returnMsg,
+      </if>
+      <if test="cartlist != null" >
+        cartList,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+      <if test="createip != null" >
+        createIp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="goodlist != null" >
+        #{goodlist,jdbcType=VARCHAR},
+      </if>
+      <if test="paymoney != null" >
+        #{paymoney,jdbcType=INTEGER},
+      </if>
+      <if test="paystate != null" >
+        #{paystate,jdbcType=INTEGER},
+      </if>
+      <if test="addrid != null" >
+        #{addrid,jdbcType=INTEGER},
+      </if>
+      <if test="addrbackup != null" >
+        #{addrbackup,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="wecatorderno != null" >
+        #{wecatorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="finishtime != null" >
+        #{finishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnmsg != null" >
+        #{returnmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="cartlist != null" >
+        #{cartlist,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="createip != null" >
+        #{createip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.seed.entity.order.Orders" >
+    update seed_orders
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="goodlist != null" >
+        goodList = #{goodlist,jdbcType=VARCHAR},
+      </if>
+      <if test="paymoney != null" >
+        payMoney = #{paymoney,jdbcType=INTEGER},
+      </if>
+      <if test="paystate != null" >
+        payState = #{paystate,jdbcType=INTEGER},
+      </if>
+      <if test="addrid != null" >
+        addrId = #{addrid,jdbcType=INTEGER},
+      </if>
+      <if test="addrbackup != null" >
+        addrBackUp = #{addrbackup,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderno != null" >
+        orderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="wecatorderno != null" >
+        wecatOrderNo = #{wecatorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="finishtime != null" >
+        finishTime = #{finishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnmsg != null" >
+        returnMsg = #{returnmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="cartlist != null" >
+        cartList = #{cartlist,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="createip != null" >
+        createIp = #{createip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.seed.entity.order.Orders" >
+    update seed_orders
+    set userId = #{userid,jdbcType=INTEGER},
+      goodList = #{goodlist,jdbcType=VARCHAR},
+      payMoney = #{paymoney,jdbcType=INTEGER},
+      payState = #{paystate,jdbcType=INTEGER},
+      addrId = #{addrid,jdbcType=INTEGER},
+      addrBackUp = #{addrbackup,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      orderNo = #{orderno,jdbcType=VARCHAR},
+      wecatOrderNo = #{wecatorderno,jdbcType=VARCHAR},
+      finishTime = #{finishtime,jdbcType=TIMESTAMP},
+      returnMsg = #{returnmsg,jdbcType=VARCHAR},
+      cartList = #{cartlist,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      createIp = #{createip,jdbcType=VARCHAR}
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -47,6 +47,7 @@
             <mvc:exclude-mapping path="/js/**"/>  <!-- 3.0.xsd是没有这个功的，必须3.0以上-->
             <mvc:exclude-mapping path="/img/**"/>
             <mvc:exclude-mapping path="/plugjsp/**"/>
+            <mvc:exclude-mapping path="/wxpay/notify"/>   <!-- 微信回调不拦截 -->
             <!--拦截器的java类地址-->
             <bean class="com.seed.intercepter.Authorization"/>
         </mvc:interceptor>

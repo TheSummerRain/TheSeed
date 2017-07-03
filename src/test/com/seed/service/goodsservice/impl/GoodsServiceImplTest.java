@@ -75,9 +75,11 @@ public class GoodsServiceImplTest {
     public void getImgs() throws NoSuchFieldException, IllegalAccessException {
 
         List<GoodsImgs> gm =  goodsService.getGoodsImgsByGoodsId(1);
-
         System.out.println(gm.size());
+    }
 
+
+    public void test (){
 
     }
 

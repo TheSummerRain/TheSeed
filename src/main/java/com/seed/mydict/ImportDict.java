@@ -14,7 +14,7 @@ public class ImportDict {
 
 
     //session中用户信息的 key-Name。
-    public static String USER_IN_SESSION = "userInfo";
+    public static final String USER_IN_SESSION = "UserSesionInfo";
 
 
     //redis-keyName

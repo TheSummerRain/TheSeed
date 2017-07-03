@@ -2,7 +2,9 @@ package com.seed.dao.orderMapper;
 
 
 import com.seed.entity.order.Cart;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,4 +30,8 @@ public interface ICartMapper {
     List<HashMap<String, Object>> searchCartInfo(int userId);
 
 
+    @Update("update seed_cart set amount=amount-1 where cartId = #{cartid} ")
+    void minAmount(@Param("cartid") Integer cartid);
+    @Update("update seed_cart set amount=amount+1 where cartId = #{cartid} ")
+    void addAmount(@Param("cartid")Integer cartid);
 }

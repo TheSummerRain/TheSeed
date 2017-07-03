@@ -91,5 +91,10 @@ public class UserInfoServiceImpl implements IUserInfoService {
         addrsMapper.updateAddrDefaultByAddrId(addrId);
     }
 
+    public SeedAddrs getResAddrsByAddrId(int addrid) {
+
+        return addrsMapper.getResAddrsByAddrId(addrid);
+    }
+
 
 }

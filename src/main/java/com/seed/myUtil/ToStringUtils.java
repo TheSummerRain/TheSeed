@@ -3,6 +3,8 @@ import com.seed.entity.user.WXUserInfo;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.text.DecimalFormat;
+
 /**
  * 把Bean的属性输出打印，相当于从写ToString（）方法。
  * Created by summer on 2017/5/14.
@@ -11,6 +13,10 @@ import java.lang.reflect.Method;
 public class ToStringUtils {
 
     public static void main(String[] args) {
+        Float money = Float.valueOf("23.56");
+        DecimalFormat fnum = new DecimalFormat("##0.00");
+        String dd = fnum.format(money);
+        System.out.println(dd);
 
     }
 

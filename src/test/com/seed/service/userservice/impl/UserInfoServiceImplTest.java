@@ -32,9 +32,16 @@ public class UserInfoServiceImplTest {
 
         System.out.println(uf.toString());
         //System.out.println(ToStringUtils.fieldToString(new StringBuffer(),uf));
-
-
     }
+
+    @Test
+    public void GetUserByOpenId()throws  Exception{
+
+        WXUserInfo bf = userInfoService.getUserInfoByOpenId("oY0PHw3X2faN-EAjdNcrE-0hL4kE");
+        System.out.println(bf.getUserid());
+        System.out.println(bf.getMobile());
+    }
+
 
     @Test
     public void insertUserByObject() throws Exception {

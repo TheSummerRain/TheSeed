@@ -82,4 +82,7 @@ public interface IUserInfoService {
      * @date 2017/6/10 17:28
      */
     void updateAddrDefaultByAddrId(Integer userid, int addrId);
+
+    //根据用户选择的地址ID，获取地址信息。
+    SeedAddrs getResAddrsByAddrId(int addrid);
 }

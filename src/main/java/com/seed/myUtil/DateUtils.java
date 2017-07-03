@@ -18,7 +18,8 @@ public class DateUtils {
     public static final String DATE_LONG_STR = "yyyy-MM-dd kk:mm:ss.SSS";
     public static final String DATE_SMALL_STR = "yyyy-MM-dd";
     public static final String DATE_KEY_STR = "yyMMddHHmmss";
-    public static final String DATE_All_KEY_STR = "yyyyMMddHHmmss";
+    public static final String DATE_All_KEY_STR = "yyyyMMddHHmmssSSSS";
+
 
     /**
      * 给指定的日期加上(减去)月份
@@ -60,6 +61,12 @@ public class DateUtils {
         return df.format(new Date());
     }
 
+    //一种日期序列号
+    public static String getKeyNo(){
+        SimpleDateFormat df = new SimpleDateFormat(DATE_All_KEY_STR);
+        return df.format(new Date());
+    }
+
 
     /**
      * @description 获取一个日期的便用读写模式
@@ -76,9 +83,7 @@ public class DateUtils {
         return df.format(date);
     }
 
-    public static void main(String[] args) {
-        System.out.println(getStringDate(new Date()));
-    }
+
 
     /**
      * 获取系统当前时间(指定返回类型)
@@ -212,5 +217,27 @@ public class DateUtils {
         String date = new SimpleDateFormat(DATE_FULL_STR).format(new Date(timestamp));
         return date;
     }
+
+
+
+    /**
+     * @description 
+     * @author Jack
+     * @param userid 用户ID
+     * @param businesshead 业务代码：订单代码-DT
+     * @return 一个序列
+     * @date 2017/6/18 13:17
+     */
+    public synchronized static String getOrderNo(Integer userid,String businesshead) {
+        return businesshead+String.format("%06d", userid)+ DateUtils.getKeyNo()+String.valueOf((int)(Math.random()*99));
+    }
+
+
+    public static void main(String[] args) {
+        for (int i = 0;i<10;i++)
+        System.out.println(getOrderNo(123,"TD"));
+    }
+
+
 
 }

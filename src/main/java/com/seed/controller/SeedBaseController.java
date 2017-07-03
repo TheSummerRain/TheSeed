@@ -1,7 +1,11 @@
 package com.seed.controller;
 
+import com.github.binarywang.wxpay.config.WxPayConfig;
+import com.github.binarywang.wxpay.service.WxPayService;
+import com.github.binarywang.wxpay.service.impl.WxPayServiceImpl;
 import com.seed.dao.orderMapper.ICartMapper;
 import com.seed.entity.banner.BannerInfo;
+import com.seed.entity.user.BaseUserInfo;
 import com.seed.entity.user.WXUserInfo;
 import com.seed.myUtil.PropertyManager;
 import com.seed.myUtil.myWxMpServiceUtils;
@@ -10,6 +14,7 @@ import com.seed.service.bannerService.IBannerService;
 import com.seed.service.bookservice.IBookInfoService;
 import com.seed.service.goodsservice.IGoodsService;
 import com.seed.service.orderService.ICartService;
+import com.seed.service.orderService.IOrderService;
 import com.seed.service.userservice.IUserInfoService;
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
@@ -55,6 +60,8 @@ public abstract class SeedBaseController {
     @Autowired
     protected ICartService cartService;
 
+    @Autowired
+    protected IOrderService orderService;
     /*===================== 2、注册其他服务 =========================*/
 
 
@@ -110,8 +117,29 @@ public abstract class SeedBaseController {
     //从session获取用户信息。
     public WXUserInfo getUserInfoFromSession(HttpServletRequest request){
         WXUserInfo wf =  (WXUserInfo) request.getSession().getAttribute(ImportDict.USER_IN_SESSION);
+
+        if(null != wf){
+
+        }
         return wf;
     }
+
+
+    //获取可用的wxPayService
+    public  WxPayService getWxPayService(){
+        WxPayConfig payConfig = new WxPayConfig();
+        payConfig.setAppId(PropertyManager.getProperty("wx_appid"));
+        payConfig.setMchId(PropertyManager.getProperty("wx_mchId"));
+        payConfig.setMchKey(PropertyManager.getProperty("wx_mchKey"));
+        payConfig.setKeyPath("/home/tomcat/apache-tomcat-8.5.8/webapps/seed/plugjsp/apiclient_cert.p12");  //签名会用这个证书，绝对路径  https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_3
+        payConfig.setNotifyUrl("http://www.lzyj666.com/seed/wxpay/notify"); //回调地址 这里最好使用https.后面在修改。
+        payConfig.setTradeType("JSAPI");
+
+        WxPayService wxPayService = new WxPayServiceImpl();
+        wxPayService.setConfig(payConfig);
+        return wxPayService;
+    }
+
 
 
 }

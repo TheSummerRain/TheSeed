@@ -43,4 +43,8 @@ public interface ISeedAddrsMapper {
     void updateAddrDefaultByAddrId(@Param("addrId") int addrId);
 
 
+    //根据地址获取一条地址信息。
+    @Select("select * from seed_addrs where id=#{addrid}")
+    @ResultMap("BaseResultMap")
+    SeedAddrs getResAddrsByAddrId(@Param("addrid") int addrid);
 }
