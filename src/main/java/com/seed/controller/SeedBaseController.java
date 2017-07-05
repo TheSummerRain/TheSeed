@@ -117,7 +117,6 @@ public abstract class SeedBaseController {
     //从session获取用户信息。
     public WXUserInfo getUserInfoFromSession(HttpServletRequest request){
         WXUserInfo wf =  (WXUserInfo) request.getSession().getAttribute(ImportDict.USER_IN_SESSION);
-
         if(null != wf){
 
         }

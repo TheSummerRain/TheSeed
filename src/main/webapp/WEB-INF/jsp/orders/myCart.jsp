@@ -127,7 +127,7 @@
 <script type="text/javascript">
 
     function push() {
-       window.location.href ="<%=bp%>/order/createOrder/${addrs.id}?param="+$("#totalprice").html();
+       window.location.href ="<%=bp%>/order/createOrder?param="+$("#totalprice").html()+"&param2="+${addrs.id};
     }
     
     

@@ -26,12 +26,16 @@ public interface ICartMapper {
 
 //根据用户ID查询用户的购物车信息。
     //为了减少查询的结果集，吧*换成需要的字符串吧。减少遍历时间。
-    @Select("select * from seed_cart sc LEFT JOIN seed_goods sg on sc.goodsId=sg.gdid where sc.userId=6")
-    List<HashMap<String, Object>> searchCartInfo(int userId);
+    @Select("select * from seed_cart sc LEFT JOIN seed_goods sg on sc.goodsId=sg.gdid where sc.userId=#{userId}")
+    List<HashMap<String, Object>> searchCartInfo(@Param("userId") int userId);
 
 
     @Update("update seed_cart set amount=amount-1 where cartId = #{cartid} ")
     void minAmount(@Param("cartid") Integer cartid);
     @Update("update seed_cart set amount=amount+1 where cartId = #{cartid} ")
     void addAmount(@Param("cartid")Integer cartid);
+
+    //这里最好可以带上状态，别把数据都是删除了。
+    @Select("select * from seed_cart where userId = #{userid}")
+    List<Cart> getCartListByUserId(@Param("userid") Integer userid);
 }

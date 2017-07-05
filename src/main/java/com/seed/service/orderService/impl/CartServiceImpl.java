@@ -26,7 +26,7 @@ public class CartServiceImpl implements ICartService {
 
     //只需要查询购物车数据即可。
     public List<Cart> getCartListByUserId(Integer userid) {
-        return null;
+        return cartMapper.getCartListByUserId(userid);
     }
 
     //每次 -1数量
